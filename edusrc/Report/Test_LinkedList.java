@@ -59,7 +59,7 @@ class LinkedList3 {
 	}
 }
 
-public class Test_ch08_연결리스트와배열 {
+public class Test_LinkedList {
 	static int getList(int[]data) {
 		int count = 0;
 		int mid = data.length/2; //// int[]list = new int[10]; > data.length 10 /2 == 5
