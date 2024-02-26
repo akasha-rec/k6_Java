@@ -1,4 +1,4 @@
-package Report; //과제3 2월 26일까지
+package Review; //과제3 2월 26일까지
 
 class Node3 {
 	int data; //필드
@@ -35,7 +35,7 @@ class LinkedList3 {
 		System.out.println();
 		Node3 p = first;
 		while (p != null) {
-			System.out.println(p.data+"");
+			System.out.print(p.data+" ");
 			p = p.link;
 		}
 		System.out.println();
@@ -81,16 +81,14 @@ public class Test_LinkedList {
 		}
 	}
 	static int insertList(int[] data, int count, int x) {
-		int indx = 0; //인덱스, 값을 삽입할 위치 찾을 때
-		int i = 0; // 값을 옮길 때 사용
-		while (indx < count) {
-			if (x < data[indx]) {//현재 위치의 값보다 삽입할 값이 작다면
-				while (indx < count) { //insert 하면서 옆으로 밀려나, 중간?
-					int temp = data[i]; //밀려날 수 임시 저장
-					data[i] = x;
-					x = temp;
-					i++;
-					indx++;
+		int indx = 0;
+		while (indx <= count) {//data.length(<)와 다른 점 : 현재 생성된 [0, 5, 10, 15, 20, 25]까지 돌아서 <=
+			if (x < data[indx]) {//기존 배열의 값보다 삽입할 값이 작다면 다음 칸으로 이동
+				while (indx <= count) {//
+					int temp = data[indx]; //기존 값이 밀려나면서 임시 저장
+					data[indx] = x; //밀린 수가 있던 자리에 삽입할 값이 들어가고
+					x = temp;//기존값이 temp자리로 들어가서 다음 값과 비교하고 삽입되어야
+					indx++;//위치 이동
 				}
 				break;
 			}
@@ -98,7 +96,7 @@ public class Test_LinkedList {
 				indx++;
 			}
 		}
-		return count+1;
+		return ++count; //값이 밀리면서 배열의 원소 수가 증가
 	}
 
 	public static void main(String[] args) {
@@ -115,7 +113,7 @@ public class Test_LinkedList {
 		showList(list);
 		//********************* 
 
-		//new : 1. (heap) 메모리에 할당된 2. 주소값 반환
+		//new : 1. (heap) 메모리에 할당된 2. 주소값 반환 list랑 LinkedList 만드는 게 다르다
 		LinkedList3 ll = new LinkedList3();
 		ll.append(5);ll.append(10);ll.append(15);ll.append(20);ll.append(25); // 붙인다
 		ll.showList();
