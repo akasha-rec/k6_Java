@@ -1,4 +1,4 @@
-package Ch07_inheritance;
+package Review_Inheritance;
 
 public class Student extends Person { 
 	private String major;

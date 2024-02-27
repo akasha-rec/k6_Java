@@ -1,4 +1,4 @@
-package Ch07_inheritance;
+package Review_Inheritance;
 
 public class Employee extends Person {
 	private String dept;

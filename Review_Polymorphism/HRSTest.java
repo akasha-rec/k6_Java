@@ -1,4 +1,4 @@
-package Ch08_polymorphism;
+package Review_Polymorphism;
 
 
 abstract class Employee {//모두 Employee라는 공통의 superclass를 가짐 > 매개변수 선언을 부모클래스로 하면 자손마다 오버로딩을 할 필요X

@@ -1,4 +1,4 @@
-package edu1;
+package Review;
 
 public class Test2 {
 

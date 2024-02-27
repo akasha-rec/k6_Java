@@ -1,4 +1,4 @@
-package Ch07_inheritance;
+package Review_Inheritance;
 
 public class Person { // 공통점 모아놓음
 	private String name;
