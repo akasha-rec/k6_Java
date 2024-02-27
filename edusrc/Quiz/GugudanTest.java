@@ -6,13 +6,20 @@ public class GugudanTest {
 		// TODO Auto-generated method stub
 
 		Gugudan ggd = new Gugudan();
-
+				
+				ggd.printHorizontal();
+				
+				ggd.printColumn(0);
+				
 				ggd.print(2);
 				System.out.println("-".repeat(15));
+
 				ggd.print(3);
 				System.out.println("-".repeat(15));
+
 				ggd.print(4);
 				System.out.println("End");
+				
 			}
 
 		}
