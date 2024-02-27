@@ -1,4 +1,4 @@
-package com.ruby.java.ch10; // 과제4 2월 28일까지
+package Report; // 과제4 2월 28일까지
 //구현과제로 실습
 //hashset을 arraylist로 변환하여 정렬하기 구현 hash함수를 사용해서 집합을 만듦 > 중복이 없어
 
@@ -33,7 +33,7 @@ import java.util.Random;
 //		return 0;
 //	}
 //}
-public class Test_ch10_lotto당첨처리 {
+public class Test_Lotto {
 
 	public static void main(String[] args) {
 

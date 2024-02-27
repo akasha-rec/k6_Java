@@ -1,4 +1,4 @@
-package com.ruby.java.ch08; // 과제3 인터페이스 형성 정답 > 연습 / 이거 참고해서 Test_Object 풀기 
+package Report; // 과제3 인터페이스 형성 정답 > 연습 / 이거 참고해서 Test_Object 풀기 
 /*
  * 인터페이스 다형성 실습 코드
  */

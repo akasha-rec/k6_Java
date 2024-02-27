@@ -1,4 +1,4 @@
-package Review; //과제3 2월 26일까지
+package Report; //과제3 2월 26일까지
 
 class Node3 {
 	int data; //필드

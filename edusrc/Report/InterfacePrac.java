@@ -1,4 +1,4 @@
-package com.ruby.java.ch08;
+package Report;
 /*
  * 인터페이스 다형성 실습 코드
  */
