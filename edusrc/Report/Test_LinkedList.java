@@ -13,21 +13,21 @@ class LinkedList3 {
 
 	void append(int data) {
 		Node3 p = first, q = null; // p가 현재 노드, q는 이전 노드 연결해나가야 하니까 q = p;
-		//추가 코딩을 해야... 
 		Node3 newNode = new Node3(data);
+		
 		if (p == null) { //생성
 			first = newNode;
 			return; 
 		} else {
 			while (p != null) { //끝이 아니라서 다음 노드로 연결을 위해
 				q = p;
-				p = p.link;//p = null이 되서 > 현재 p의 주소를 p에게 넘기고 다음으로
+				p = p.link;
 			}
 			q.link = newNode; // q가 새로운 노드를 가리킨다.
 		}
 	}
 
-	public LinkedList3() { //기본 생성자 참조변수 ll > 참조변수
+	public LinkedList3() {
 		first = null;
 	}
 
