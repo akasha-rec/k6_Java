@@ -18,6 +18,13 @@ public class Gugudan {
 		}
 	}
 		public void printColumn(int col) { //3개씩 끊기
-
+			for (int i = 2; i < 10; i+=3) {
+				for (int j = 1; j < 10; j++) {
+					for (int k = i; k < i+3 && k <=9; k++)
+					System.out.print(k + "*" + j + "=" + (k*j)+"\t");
+					System.out.println();
+				}
+			System.out.println();
+		}
 		}
 }
