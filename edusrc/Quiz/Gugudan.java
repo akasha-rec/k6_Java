@@ -18,6 +18,6 @@ public class Gugudan {
 		}
 	}
 		public void printColumn(int col) { //3개씩 끊기
-			
+
 		}
 }
