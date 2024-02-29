@@ -1,8 +1,8 @@
-package edu;
+package Quiz;
 
 import java.util.Scanner;
 
-public class Quiz {
+public class PrimeNumber1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
