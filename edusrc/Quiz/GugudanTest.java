@@ -9,7 +9,7 @@ public class GugudanTest {
 				
 				ggd.printHorizontal();
 				
-				ggd.printColumn(3);
+				ggd.printColumn(5);
 				
 				ggd.print(2);
 				System.out.println("-".repeat(15));

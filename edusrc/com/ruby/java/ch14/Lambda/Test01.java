@@ -1,4 +1,4 @@
-package com.ruby.java.ch14;
+package com.ruby.java.ch14.Lambda;
 
 interface MyInterface {
 	public void print();

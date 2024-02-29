@@ -1,0 +1,16 @@
+package com.ruby.java.ch14.method;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.function.Supplier;
+
+public class Test17 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Supplier<String> day = () -> new SimpleDateFormat("E요일").format(new Date());
+		String result = day.get();
+		System.out.println(result);
+	}
+
+}
