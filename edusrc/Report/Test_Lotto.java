@@ -40,7 +40,7 @@ public class Test_Lotto {
 	}
 
 	public static void lotto_generator(int n) {
-		Random number = new Random();
+		Random rnd = new Random();
 		List<HashSet<Integer>> lottoSet = new ArrayList<>();//복권 여러장 = 복권들의 집합
 		HashSet<Integer> lotto = null;//HashSet<Integer> - 복권 1장, 복권들의 번호가 중복되도 상관X
 //		List<List<Integer>> al = new ArrayList<>();
