@@ -7,19 +7,19 @@ public class GugudanTest {
 
 		Gugudan ggd = new Gugudan();
 				
-				ggd.printHorizontal();
+//				ggd.printHorizontal();
 				
-				ggd.printColumn(5);
+				ggd.printColumn(3);
 				
-				ggd.print(2);
-				System.out.println("-".repeat(15));
-
-				ggd.print(3);
-				System.out.println("-".repeat(15));
-
-				ggd.print(4);
-				System.out.println("End");
-				
+//				ggd.print(2);
+//				System.out.println("-".repeat(15));
+//
+//				ggd.print(3);
+//				System.out.println("-".repeat(15));
+//
+//				ggd.print(4);
+//				System.out.println("End");
+//				
 			}
 
 		}

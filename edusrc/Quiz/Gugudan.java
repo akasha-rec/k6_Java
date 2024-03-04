@@ -17,11 +17,12 @@ public class Gugudan {
 			System.out.println();
 		}
 	}
-		public void printColumn(int col) { //3개씩 끊기
+		public void printColumn(int col) { //col개수만큼 끊어서 출력
 			for (int i = 2; i < 10; i+=col) {
 				for (int j = 1; j < 10; j++) {
-					for (int k = i; k < i+col && k <=9; k++)
-					System.out.print(k + "*" + j + "=" + (k*j)+"\t");
+					for (int k = i; k < i+col && k <=9; k++) {
+						System.out.print(k + "*" + j + "=" + (k*j)+"\t");
+					}
 					System.out.println();
 				}
 			System.out.println();

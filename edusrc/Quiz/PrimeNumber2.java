@@ -16,9 +16,10 @@ public class PrimeNumber2 {
 
 		for(int i = s; i <= e; i++) { //10~99
 			for(int j = 2; j <=i; j++) {
-				if (i % j ==0) {// 소수가 아니다.
-					if (i != j)
+				if (i % j ==0) { //딱 나눠지면서
+					if (i != j) { //1과 나 자신만을 가지는 소수
 						break;
+					}
 					System.out.println(i);
 				}
 			}
