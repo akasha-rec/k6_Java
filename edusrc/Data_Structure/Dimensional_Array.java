@@ -35,10 +35,10 @@ public class Dimensional_Array {
 		showData(F);
 		boolean result = equals(A, D);
 		System.out.println(" equals(A,D) = " + result);
-		
+
 		System.out.println("F = " + Arrays.deepToString(F));//2차원 배열 처리 
 	}
-	
+
 	static void inputData(int [][]data) {
 		Random rnd = new Random();
 		for (int i = 0; i < data.length; i++)
@@ -47,42 +47,60 @@ public class Dimensional_Array {
 			}
 	}
 	static void showData(int[][]items) {
-		for (int[] item : items) {
-			System.out.print(item + " ");
+		for (int[] row : items) {
+			for (int item : row) {
+				System.out.print(item + " ");
+			}
+			System.out.println();
 		}
 		System.out.println();
 	}
-	
+
 	static boolean equals(int[][]a, int[][]b) {
-		if (a.length != b.length || a[0].length != b[0].length) 
-			return false;
-
-		return true;
-
+		if (a.length != b.length || a[0].length != b[0].length) //두 행렬의 행 길이가 같지 않거나 열의 길이가 같지 않으면
+			return false; // 같지 않다
+		else
+			return true; // 같다
 	}
+
 	static int[][] addMatrix(int [][]X, int[][]Y) {
 		int rows = X.length;
 		int cols = X[0].length;
 		int [][]Z = new int[rows][cols];
 		// Z = X + Y
+		for (int i = 0; i < X.length; i++)
+			for (int j = 0; j < X[0].length; j++) {
+				Z[i][j] = X[i][j] + Y[i][j];
+			}
 
 		return Z;
 	}
+
 	static int[][] multiplyMatrix(int [][]X, int[][]Y) {
 		int rows = X.length;
 		int cols = Y[0].length;
 		int [][]Z = new int[rows][cols];
+		for (int i = 0; i < X.length; i++) {
+			for (int j = 0; j < Y[0].length; j++) {
+				for (int k = 0; k < X.length; k++) {
+					Z[i][j] += X[i][k] * Y[k][j];
+				}
+			}
+		}
 		
 		return Z;
-		
 	}
+	
 	static int[][] transposeMatrix(int [][]X) {
 		int rows = X.length;
 		int cols = X[0].length;
 		int [][]Z = new int[cols][rows];
-
+		for (int i = 0; i < X.length; i++)
+			for (int j = 0; j < X[0].length; j++) {
+				Z[j][i] = X[i][j];
+			}
 		return Z;
-		
+
 	}
 }
 
