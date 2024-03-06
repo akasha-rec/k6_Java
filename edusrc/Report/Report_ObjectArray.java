@@ -25,6 +25,10 @@ public class Report_ObjectArray {
 		
 	}
 	static void sortData(PhyscData []arr) {
+		for (int i = 0;)
+			for (int j = 0;)
+				if (arr[i] > arr[j]) //compareTo()
+					swap(a, i, j)
 		
 	}
 	public static void main(String[] args) {

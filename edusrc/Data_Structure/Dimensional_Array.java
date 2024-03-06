@@ -38,16 +38,21 @@ public class Dimensional_Array {
 		
 		System.out.println("F = " + Arrays.deepToString(F));//2차원 배열 처리 
 	}
+	
 	static void inputData(int [][]data) {
-		Random rand = new Random();
-
+		Random rnd = new Random();
+		for (int i = 0; i < data.length; i++)
+			for (int j = 0; j < data.length; j++) {
+				data[i][j] = rnd.nextInt(10);
+			}
 	}
 	static void showData(int[][]items) {
 		for (int[] item : items) {
-
+			System.out.print(item + " ");
 		}
 		System.out.println();
 	}
+	
 	static boolean equals(int[][]a, int[][]b) {
 		if (a.length != b.length || a[0].length != b[0].length) 
 			return false;
@@ -59,7 +64,7 @@ public class Dimensional_Array {
 		int rows = X.length;
 		int cols = X[0].length;
 		int [][]Z = new int[rows][cols];
-		
+		// Z = X + Y
 
 		return Z;
 	}

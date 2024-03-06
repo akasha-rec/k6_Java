@@ -16,19 +16,34 @@ public class Method_Array {
 		System.out.println("찾는 값 = " + 3 + ", 존재여부 = " + existValue);
 	}
 	static void showData(int[]data) {
-		for (int num: data) {
+		for (int num: data) { //확장형 for문
 			System.out.print(num+" ");
 		}
 	}
 	public static void inputData(int []data) {//교재 63 - 난수의 생성
-
+		Random rnd = new Random();
+		for (int i = 0; i < data.length; i++)
+			data[i] = rnd.nextInt(10);
 	}
-	static int findMax(int []items) {
-
+	
+	static int findMax(int []items) { //p56
+		int max = items[0];
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] > max) {
+				max = items[i];				
+			}
+		}
+		return max;
+		
 	}
 	static boolean findValue(int []items, int value) {
 		//items[]에 value 값이 있는지를 찾는 알고리즘 구현
-
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] == value) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
