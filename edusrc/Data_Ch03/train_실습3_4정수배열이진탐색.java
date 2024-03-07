@@ -21,6 +21,7 @@ public class train_실습3_4정수배열이진탐색 {
 		showList("정렬 후 배열[]:: ", data);// 구현 반복 숙달 훈련
 
 		int key = 13;
+		//Arrays.binarySearch
 		int resultIndex = linearSearch(data, key);//교재 99-100:실습 3-1 참조, 교재 102: 실습 3-2
 		//Arrays 클래스에 linear search는 없다
 		System.out.println("\nlinearSearch(13): result = " + resultIndex);

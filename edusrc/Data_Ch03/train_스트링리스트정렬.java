@@ -6,6 +6,7 @@ import java.util.List;
 public class train_스트링리스트정렬 {
 
 	    public static String[] removeElement1(String[] arr, String item) {
+	    	//array > list (Array.asList) >> list.remove >> list > array(list.toArray())
 
 	    }
 	    
@@ -37,7 +38,9 @@ public class train_스트링리스트정렬 {
 	    static String[] removeDuplicateList(List<String> list) {
 		    String cities[] = new String[0];
 		    cities = list.toArray(cities);
-		    
+		    // list > array cities[]로 변환
+		    // for 문으로 도시가 중복인 것을 확인 > compareTo 이용 > removeElement로 제거까지
+		    removeElement1(cities, city);
 		    return cities;
 	    }
 		public static void main(String[] args) {
