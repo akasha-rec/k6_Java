@@ -1,4 +1,4 @@
-package Chap3_검색;
+package Data_Ch03;
 
 //중복이 없는 리스트를 merge하는 버젼
 

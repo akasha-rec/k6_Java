@@ -1,9 +1,9 @@
-package Chap3_검색;
+package Data_Ch03;
 
 public class Test_실습3_7객체배열이진탐색 {
 
 }
-package Chap3_검색;
+
 
 //3장 객체 배열 정렬 - binary search
 /*
