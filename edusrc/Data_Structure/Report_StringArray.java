@@ -1,4 +1,4 @@
-package Report;
+package Data_Structure;
 
 public class Report_StringArray {
 public class 실습2_14스트링배열정렬 {
@@ -18,8 +18,8 @@ public class 실습2_14스트링배열정렬 {
 		
 	}
 	static void sortData(String []arr) {
-		for (int i = 0; )
-			for (int j = i+1;) {
+		for (int i = 0; i < arr.length; i++)
+			for (int j = i+1; j < arr.length; j++) {
 				if(arr[i] > arr[j]) //compareTo() 사용하는 것
 					swap(arr, i, j);
 			}

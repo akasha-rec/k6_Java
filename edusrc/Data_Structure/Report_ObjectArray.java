@@ -1,4 +1,4 @@
-package Report;
+package Data_Structure;
 
 import java.util.Arrays;
 
@@ -22,13 +22,17 @@ class PhyscData implements Comparable<PhyscData>{
 }
 public class Report_ObjectArray {
 	static void swap(PhyscData[]arr, int ind1, int ind2) {
-		
+	PhyscData t = arr[ind1];
+	arr[ind1] = arr[ind2];
+	arr[ind2] = t;
 	}
+	
 	static void sortData(PhyscData []arr) {
-		for (int i = 0;)
-			for (int j = 0;)
-				if (arr[i] > arr[j]) //compareTo()
-					swap(a, i, j)
+		for (int i = 0; i < arr.length; i++)
+			for (int j = 0; j < arr.length; j++)
+//				if (arr[i] > arr[j]) compareTo()
+				if (arr[i].compareTo(arr[j])>0)
+					swap(arr, i, j);					
 		
 	}
 	public static void main(String[] args) {
