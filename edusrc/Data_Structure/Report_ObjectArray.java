@@ -48,8 +48,8 @@ class PhyscData implements Comparable<PhyscData>{
 			static void sortData(PhyscData []arr) {
 				for (int i = 0; i < arr.length; i++)
 					for (int j = 0; j < arr.length; j++)
-						//if (arr[i] > arr[j]) compareTo()
-						if (arr[i].compareTo(arr[j])<0) //오름차순
+//						if(arr[i] < arr[j]) 오류
+						if (arr[i].compareTo(arr[j])<0) //compareTo 사용 > 오름차순
 							swap(arr, i, j);					
 			}
 
