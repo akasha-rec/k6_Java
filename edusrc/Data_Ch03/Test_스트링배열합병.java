@@ -1,4 +1,4 @@
-package Data_Ch03;
+package Data_Ch03; //while(p) while(q) 하고 또 while(p) while(q)?? 
 
 /*
  * 함수(메소드)에 parameter 전달 방식을 표현하는 능력의 숙달 훈련

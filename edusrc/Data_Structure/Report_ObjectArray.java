@@ -17,7 +17,7 @@ class PhyscData implements Comparable<PhyscData>{
 
 	@Override
 	public String toString() { //객체의 정보를 문자열로 출력
-		return "이름은" + name + "키는" + height + "시력은" + vision + "입니다.";
+		return "[" + name + ", " + height + ", " + vision + "]";
 	}
 
 	@Override
@@ -36,6 +36,7 @@ class PhyscData implements Comparable<PhyscData>{
 		else
 			return -1;
 	}
+}
 	
 		public class Report_ObjectArray {
 			static void swap(PhyscData[]arr, int ind1, int ind2) {
@@ -48,13 +49,13 @@ class PhyscData implements Comparable<PhyscData>{
 				for (int i = 0; i < arr.length; i++)
 					for (int j = 0; j < arr.length; j++)
 						//if (arr[i] > arr[j]) compareTo()
-						if (arr[i].compareTo(arr[j])>0)
+						if (arr[i].compareTo(arr[j])<0) //오름차순
 							swap(arr, i, j);					
 			}
 
 			public static void main(String[] args) {
 				PhyscData[] data = {
-						new PhyscData("홍길동", 162, 0.3),
+						new PhyscData("홍길동", 162, 0.3), //객체
 						new PhyscData("홍동", 164, 1.3),
 						new PhyscData("홍길", 152, 0.7),
 						new PhyscData("김홍길동", 172, 0.3),
@@ -72,7 +73,7 @@ class PhyscData implements Comparable<PhyscData>{
 				for (PhyscData i : arr) {
 					System.out.println(i + " ");
 				}
+				System.out.println();
 			}
 
 		}
-}
