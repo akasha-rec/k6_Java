@@ -25,7 +25,7 @@ public class train_스트링리스트정렬 {
 	    static void showList(String topic, List<String> list) {
 	    	System.out.println(topic);
 	    	for (String st : list) {
-	    		
+	    		System.out.println(st);
 	    	}
 	    }
 	    
