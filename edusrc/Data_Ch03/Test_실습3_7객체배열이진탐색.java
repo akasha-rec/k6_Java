@@ -16,36 +16,53 @@ class Fruit4 {
 	int price;
 	String expire;
 
-
+	public Fruit4(String name, int price, String expire) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.price = price;
+		this.expire = expire;
+	}
 
 	public int getPrice() {
 		return price;
 	}
+
 	public String getName() {
 		return name;
 	}
 }
+
 //교재 123~129 페이지 참조하여 구현
 class FruitNameComparator2 implements Comparator<Fruit4>{
 	public int compare(Fruit4 f1, Fruit4 f2) {
-
-
+		return (f1.price > f2.price) ? 1 : (f1.price < f2.price) ? -1 : 0; 
 	}
+}
+
 	public class Test_실습3_7객체배열이진탐색 {
 
 		private static void sortData(Fruit4[] arr, Comparator<Fruit4> cc_price) {
+			for (int i = 0; i < arr.length; i++) {
+				for (int j = i+1; j < arr.length; j++)
+					if (cc_price.compare(arr[i],arr[j])> 0) swap(arr, i, j);
+			}
 
 		}
-		static void swap(Fruit4[]arr, int ind1, int ind2) {
-			Fruit4 temp = arr[ind1]; arr[ind1] = arr[ind2]; arr[ind2] = temp;
-		}
+
 		static void sortData(Fruit4 []arr, FruitNameComparator2 cc) {
 			for (int i = 0; i < arr.length; i++) {
 				for (int j = i+1; j < arr.length; j++)
 					if (cc.compare(arr[i],arr[j])> 0) swap(arr, i, j);
 			}
 		}
+		
+		static void swap(Fruit4[]arr, int ind1, int ind2) {
+			Fruit4 temp = arr[ind1];
+			arr[ind1] = arr[ind2]; 
+			arr[ind2] = temp;
+		}
 
+		
 		public static void main(String[] args) {
 
 			Fruit4[] arr = {new Fruit4("사과", 200, "2023-5-8"), 
@@ -124,8 +141,36 @@ class FruitNameComparator2 implements Comparator<Fruit4>{
 
 			result3Index = binarySearch(arr, newFruit4, cc_price);
 			System.out.println("\nbinarySearch() 조회결과::" + result3Index);
-
 		}
 
-	}
+		private static void reverse(Fruit4[] arr) {
+			// TODO Auto-generated method stub
+			for (int i = 0; i < arr.length / 2; i++) {
+				swap(arr, i, arr.length -i -1);
+			}
+		}
+		private static void showData(String string, Fruit4[] arr) {
+			// TODO Auto-generated method stub
+			for (Fruit4 fruit : arr) {
+				System.out.print(fruit.getName() + "(" + fruit.getPrice() + ")");
+			}
+			System.out.println();
+		}
 
+		static int binarySearch(Fruit4[] item, Fruit4 key, Comparator<Fruit4>cc) {
+			int pl = 0;
+			int pr = item.length-1;
+
+			while (pl <= pr) {
+				int pc = (pl + pr) /2;
+				if (cc.compare(item[pc], key) == 0) {
+					return pc;
+				} else if(cc.compare(item[pc], key) < 0) {
+					pl = pc +1;
+				} else {
+					pr = pc- 1;
+				}
+			}
+			return -1;
+		}
+	}
