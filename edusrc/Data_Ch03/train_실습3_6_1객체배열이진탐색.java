@@ -131,7 +131,6 @@ public class train_실습3_6_1객체배열이진탐색 {
 			}
 		}
 		return -1;
-
 	}
 
 	private static void showData(String string, PhyscData2[] data) {
@@ -141,7 +140,5 @@ public class train_실습3_6_1객체배열이진탐색 {
 			System.out.print(str + " ");
 		System.out.println();
 	}
-
-
 
 }
