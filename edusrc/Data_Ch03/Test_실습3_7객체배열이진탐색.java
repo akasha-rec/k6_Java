@@ -34,7 +34,7 @@ class Fruit4 {
 
 //교재 123~129 페이지 참조하여 구현
 class FruitNameComparator2 implements Comparator<Fruit4>{
-	public int compare(Fruit4 f1, Fruit4 f2) {
+	public int compare(Fruit4 f1, Fruit4 f2) {//compare는 Fruit4 객체에 대한 비교?
 		return (f1.price > f2.price) ? 1 : (f1.price < f2.price) ? -1 : 0; 
 	}
 }

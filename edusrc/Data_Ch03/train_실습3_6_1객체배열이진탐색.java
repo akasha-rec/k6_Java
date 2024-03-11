@@ -19,14 +19,22 @@ class PhyscData2 implements Comparable<PhyscData2>{
 	public String toString() {
 		
 	}
+	
 	@Override
 	public int compareTo(PhyscData2 p) {
-		
+		if (vision > p.vision)
+			return 1;
+		else if (vision < p.vision)
+			return -1;
+		else
+			return 0;
 	}
+	
 	public int equals(PhyscData2 p) {
 		
 	}
 }
+
 public class train_실습3_6_1객체배열이진탐색 {
 	static void swap() {
 		
@@ -36,8 +44,8 @@ public class train_실습3_6_1객체배열이진탐색 {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = i+1; j < arr.length; j++) {
 				if(arr[i].compareTo(arr[j]) >0 )
+					swap(arr, i, j);
 			}
-			swap(arr, i, j);
 		}
 	}
 	
@@ -51,6 +59,7 @@ public class train_실습3_6_1객체배열이진탐색 {
 				new PhyscData2("이동", 167, 0.2),
 				new PhyscData2("길동", 167, 0.5),
 		};
+		
 		showData("정렬전", data);
 		sortData(data);
 		showData("정렬후", data);
