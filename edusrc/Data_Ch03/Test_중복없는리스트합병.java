@@ -29,9 +29,10 @@ public class Test_중복없는리스트합병 {
 		return list1;
 	}
 	
-	static void trimSpace(String[]arr) {
+	static void trimSpace(String[]arr) { //공백 제거 for문 > arr[i].trim
 		
 	}
+	
 	static void makeList(String[] sarray1, List<String>list1) {
 		
 	}

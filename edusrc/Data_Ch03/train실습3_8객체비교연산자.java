@@ -9,6 +9,12 @@ class PhyscData3 {
 	int height;
 	double vision;
 
+	public PhyscData3(String name, int height, double vision) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
 }
 
 class CompName implements Comparator<PhyscData3>{ //인터페이스를 구현한 클래스 CompName은 compare만 구현할 뿐 그 외의 아무것도 가지지 않음
