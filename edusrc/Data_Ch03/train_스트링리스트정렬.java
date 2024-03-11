@@ -9,8 +9,8 @@ public class train_스트링리스트정렬 {
 	    public static String[] removeElement1(String[] arr, String item) {
 	    	//array(size 고정 => 동적 추가/삭제 X) > Arrays.asList로 List화 > Arrays.asList 또한 크기 고정 리스트 > new ArrayList<>() 처리 > remove 메서드 사용 가능
 	    	List<String> list = new ArrayList<>(Arrays.asList(arr));
-	    	list.remove(item);
-	    	return list.toArray(new String[0]);
+	    	list.remove(item); //삭제되면 사라지니까
+	    	return list.toArray(new String[0]); //다시 새 리스트에 넣어준다. 공간 할당은 했는데 0은 아니다?
 	    }
 	    
 	    static void getList(List<String> list) {
@@ -49,11 +49,15 @@ public class train_스트링리스트정렬 {
 		    cities = list.toArray(cities);
 		    // list > array cities[]로 변환
 		    // for 문으로 도시가 중복인 것을 확인 > compareTo 이용 > removeElement로 제거까지
+		    //While문으로 바꿔야...
+		    
 		    for (int i = 0; i < cities.length; i++) {
-		    	for (int j = i+1; j < cities.length; j++) {
+		    	int j = i+1;
+		    	while (j < cities.length) {
 		    		if(cities[i].compareTo(cities[j])==0) {
 		    			cities = removeElement1(cities, cities[j]);
-		    			j--;
+		    		} else {
+		    			j++;
 		    		}
 		    	}
 		    }

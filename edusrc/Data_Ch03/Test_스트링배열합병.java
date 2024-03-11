@@ -19,9 +19,9 @@ public class Test_스트링배열합병 {
     public static void main(String[] args) {
 	String[] s1 = { "홍길동", "강감찬", "을지문덕", "계백", "김유신" };
 	String[] s2 = {"독도", "울릉도", "한산도", "영도", "우도"};
-	Arrays.sort(s1);
+	Arrays.sort(s1);//comparable, comparator interface 없다 > comparable의 compareTo() 사용하자
 	Arrays.sort(s2);
-	
+	//후속 코딩은 객체들의 정렬 : ~ 클래스를 만들고 정렬
 	showList("s1배열 = ", s1);
 	showList("s2배열 = ", s2);
 
