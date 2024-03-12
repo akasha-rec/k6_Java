@@ -1,4 +1,4 @@
-package Data_Structure;
+package Data_Ch02;
 
 /*
  * 3번째 실습

@@ -7,6 +7,7 @@ import java.util.List;
 public class train_스트링리스트정렬 {
 
 	    public static String[] removeElement1(String[] arr, String item) {
+	    	//현재 배열에서 중복 제거하려고 하면 길이가 길어진다.
 	    	//array(size 고정 => 동적 추가/삭제 X) > Arrays.asList로 List화 > Arrays.asList 또한 크기 고정 리스트 > new ArrayList<>() 처리 > remove 메서드 사용 가능
 	    	List<String> list = new ArrayList<>(Arrays.asList(arr));
 	    	list.remove(item); //삭제되면 사라지니까

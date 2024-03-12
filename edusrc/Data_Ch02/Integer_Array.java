@@ -1,4 +1,4 @@
-package Data_Structure;
+package Data_Ch02;
 
 import java.util.Arrays;
 //교재 67 - 실습 2-5

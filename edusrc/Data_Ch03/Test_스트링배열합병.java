@@ -1,4 +1,4 @@
-package Data_Ch03; //while(p) while(q) 하고 또 while(p) while(q)?? 
+package Data_Ch03;
 
 /*
  * 함수(메소드)에 parameter 전달 방식을 표현하는 능력의 숙달 훈련
@@ -6,6 +6,7 @@ package Data_Ch03; //while(p) while(q) 하고 또 while(p) while(q)??
  */
 import java.util.Arrays;
 import java.util.List;
+
 public class Test_스트링배열합병 {
     static void showList(String topic, String [] list) {
     	System.out.println(topic);
@@ -13,6 +14,7 @@ public class Test_스트링배열합병 {
     		System.out.println(item + " ");
     	System.out.println();
     }
+    
     static String[] mergeList(String[]s1, String[] s2) {
     	int i = 0, j = 0, k =0;
     	String[] s3 = new String[10];

@@ -1,4 +1,4 @@
-package Data_Structure;
+package Data_Ch02;
 
 //메소드에 배열 전달 실습부터
 //실습 설명한다 

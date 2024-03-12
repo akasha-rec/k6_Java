@@ -1,4 +1,4 @@
-package Data_Structure;
+package Data_Ch02;
 
 public class Report_StringArray {
 	public static void main(String[] args) {

@@ -24,23 +24,47 @@ public class Test_중복없는리스트합병 {
 
 	static ArrayList<String> removeDuplicate(ArrayList<String> al) {
 		//구현할 부분 : 리스트에서 중복을 제거한다, 정렬후 호출하는 것을 전제로 구현
+		ArrayList<String> list1= new ArrayList<>(al);
+
+//		for (int i = 0; i < list1.size(); i++) {
+//			int j = i+1;
+//			while (j < list1.size()) {
+//				if (list1.get(i).equals(list1.get(j))) {
+//					list1.remove(j);
+//				} else {
+//					j++;
+//				}
+//				
+//			}
+//			
+//		}
+//		return list1;	
+//	}
 
 
-		return list1;
-	}
-	
 	static void trimSpace(String[]arr) { //공백 제거 for문 > arr[i].trim
-		
+		int i = 0;
+		while (i < arr.length) {
+			arr[i] = arr[i].trim();
+			i++;
+		}
 	}
 	
 	static void makeList(String[] sarray1, List<String>list1) {
-		
+		for (String item : sarray1) {
+			list1.add(item);
+		}
 	}
 	
 	static List<String> mergeList(List<String> list1, List<String> list2) {
-		ArrayList<String> list3 = new ArrayList<>();
-		
+		List<String> list3 = new ArrayList<>();
+		for (int i = 0; i < list1.size(); i++)
+			list3.add(list1.get(i));
+		for (int i = 0; i < list1.size(); i++)
+			list3.add(list2.get(i));
+		return list3;
 	}
+	
 	public static void main(String[] args) {
 		try {
 			Path input1 = Paths.get("a1.txt");
@@ -86,7 +110,7 @@ public class Test_중복없는리스트합병 {
 			list1 = removeDuplicate(list1);
 			list2 = removeDuplicate(list2);
 			showList("중복 제거후 리스트1: ", list1);	
-			showList("중복 제거후 리스트1: ", list1);	
+			showList("중복 제거후 리스트2: ", list2);	
 	
 	
 			List<String> list3 = new ArrayList<>();
@@ -114,6 +138,26 @@ public class Test_중복없는리스트합병 {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void showList(String string, List<String> list1) {
+		// TODO Auto-generated method stub
+		System.out.println(string);
+		for (String item1 : list1)
+			System.out.println(item1);
+		System.out.println();
+	}
+
+
+	private static void showData(String string, String[] sarray2) {
+		// TODO Auto-generated method stub
+		System.out.println(string);
+		for (String item2: sarray2)
+			System.out.println(item2);
+		System.out.println();
+		
+	}
+
+
 	static void writeFile(List<String> list3, ByteBuffer buffer) {
 		String b = " ";
 		for (String sx : list3) {

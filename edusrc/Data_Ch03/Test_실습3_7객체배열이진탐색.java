@@ -51,6 +51,7 @@ public class Test_실습3_7객체배열이진탐색 {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = i+1; j < arr.length; j++)
 				if (cc_price.compare(arr[i],arr[j])> 0) swap(arr, i, j);
+			
 		}
 
 	}
@@ -101,7 +102,7 @@ public class Test_실습3_7객체배열이진탐색 {
 		showData("람다식: (a, b) -> a.getPrice() - b.getPrice()을 사용한 Arrays.sort(arr, cc) 정렬 후", arr);
 
 		System.out.println("\n익명클래스 객체로 정렬(가격)후 객체 배열: ");
-		showdata()
+
 		Arrays.sort(arr, new Comparator<Fruit4>() {
 			@Override
 			public int compare(Fruit4 a1, Fruit4 a2) {

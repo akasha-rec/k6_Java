@@ -46,7 +46,7 @@ class CompName implements Comparator<PhyscData3>{ //인터페이스를 구현한
 	}
 		
 public class train실습3_8객체비교연산자 {	
-	static final Comparator<PhyscData3> HEIGHT_ORDER = new CompName();
+	static final Comparator<PhyscData3> HEIGHT_ORDER = new CompHeight();
 
 	public static void main(String[] args) {
 		PhyscData3[] data = {
@@ -58,14 +58,14 @@ public class train실습3_8객체비교연산자 {
 				new PhyscData3("길동", 167, 0.2),
 				new PhyscData3("길동", 167, 0.5),
 		};
+		PhyscData3 key = new PhyscData3("길동", 167, 0.2);
 		//객체를 던져준다?
-//		Arrays.binarySearch(data,  key, new CompName()); //key 찾고자 하는 요소
+		Arrays.binarySearch(data,  key, new CompName()); //key 찾고자 하는 요소
 		
 		showData("정렬전 객체 배열", data);
 		Arrays.sort(data, HEIGHT_ORDER);
 		
 		showData("정렬후 객체 배열", data);
-		PhyscData3 key = new PhyscData3("길동", 167, 0.2);
 		Arrays.binarySearch(data,  key, new CompHeight());
 		
 		int idx = Arrays.binarySearch(data, key, HEIGHT_ORDER);

@@ -1,9 +1,9 @@
-package Data_Structure;
+package Data_Ch02;
 
 import java.util.Arrays;
 
 //5번 실습 - 2장 실습 2-14를 수정하여 객체 배열의 정렬 구현
-class PhyscData implements Comparable<PhyscData>{
+class PhyscData implements Comparable<PhyscData>{//Comparable 인터페이스를 구현할 때 어떤 타입의 객체끼리 비교할 것인지 명시
 	String name;
 	int height;
 	double vision;
@@ -21,7 +21,7 @@ class PhyscData implements Comparable<PhyscData>{
 	}
 
 	@Override
-	public int compareTo(PhyscData p) { //int = return type
+	public int compareTo(PhyscData p) {
 		if (this.name.compareTo(p.name) > 0) 
 			return 1;
 		 else if (this.name.compareTo(p.name) < 0) 
