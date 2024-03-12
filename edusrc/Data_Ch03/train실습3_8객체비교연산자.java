@@ -15,21 +15,30 @@ class PhyscData3 {
 		this.height = height;
 		this.vision = vision;
 	}
+		@Override
+		public String toString() {
+			return "[" + name + ", " + height + ", " + vision + "]";
+}
 }
 
 class CompName implements Comparator<PhyscData3>{ //인터페이스를 구현한 클래스 CompName은 compare만 구현할 뿐 그 외의 아무것도 가지지 않음
 	public int compare(PhyscData3 p1, PhyscData3 p2) {
-		if (p1.name.compareTo(p2.name) > 0) return 1;
-		else if (p1.name.compareTo(p2.name) < 0) return -1;
+		if (p1.name.compareTo(p2.name) > 0)
+			return 1;
+		else if (p1.name.compareTo(p2.name) < 0) 
+			return -1;
 		else {
 			return 0;
 	}
 	}
 }
+
 	class CompHeight implements Comparator<PhyscData3>{
 		public int compare(PhyscData3 p1, PhyscData3 p2) {
-			if (p1.height > p2.height) return 1;
-			else if (p1.height < p2.height) return -1;
+			if (p1.height > p2.height) 
+				return 1;
+			else if (p1.height < p2.height) 
+				return -1;
 			else {
 				return 0;
 		}
@@ -50,7 +59,7 @@ public class train실습3_8객체비교연산자 {
 				new PhyscData3("길동", 167, 0.5),
 		};
 		//객체를 던져준다?
-		Arrays.binarySearch(data,  key, new CompName()); //key 찾고자 하는 요소
+//		Arrays.binarySearch(data,  key, new CompName()); //key 찾고자 하는 요소
 		
 		showData("정렬전 객체 배열", data);
 		Arrays.sort(data, HEIGHT_ORDER);
@@ -60,7 +69,20 @@ public class train실습3_8객체비교연산자 {
 		Arrays.binarySearch(data,  key, new CompHeight());
 		
 		int idx = Arrays.binarySearch(data, key, HEIGHT_ORDER);
-		System.out.println("\nArrays.binarySearch(): result = " + idx);
+		
+		if (idx >= 0) {
+			System.out.println("\nArrays.binarySearch(): result = " + idx);
+		} else {
+			System.out.println("\nArrays.binarySearch(): result = " + ((-idx)-1));
+		}
+	}
+
+	private static void showData(String string, PhyscData3[] data) {
+		// TODO Auto-generated method stub
+		System.out.println(string);
+		for (PhyscData3 str : data)
+			System.out.print(str + " ");
+		System.out.println();
 	}
 
 }
