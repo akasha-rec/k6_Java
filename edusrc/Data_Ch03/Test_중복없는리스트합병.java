@@ -26,20 +26,20 @@ public class Test_중복없는리스트합병 {
 		//구현할 부분 : 리스트에서 중복을 제거한다, 정렬후 호출하는 것을 전제로 구현
 		ArrayList<String> list1= new ArrayList<>(al);
 
-//		for (int i = 0; i < list1.size(); i++) {
-//			int j = i+1;
-//			while (j < list1.size()) {
-//				if (list1.get(i).equals(list1.get(j))) {
-//					list1.remove(j);
-//				} else {
-//					j++;
-//				}
-//				
-//			}
-//			
-//		}
-//		return list1;	
-//	}
+		for (int i = 0; i < list1.size(); i++) {
+			int j = i+1;
+			while (j < list1.size()) {
+				if (list1.get(i).equals(list1.get(j))) {
+					list1.remove(j);
+				} else {
+					j++;
+				}
+				
+			}
+			
+		}
+		return list1;	
+	}
 
 
 	static void trimSpace(String[]arr) { //공백 제거 for문 > arr[i].trim
@@ -57,14 +57,28 @@ public class Test_중복없는리스트합병 {
 	}
 	
 	static List<String> mergeList(List<String> list1, List<String> list2) {
-		List<String> list3 = new ArrayList<>();
-		for (int i = 0; i < list1.size(); i++)
-			list3.add(list1.get(i));
-		for (int i = 0; i < list1.size(); i++)
-			list3.add(list2.get(i));
-		return list3;
-	}
-	
+		List<String> list3 = new ArrayList<>(); //순서대로 합치기...
+    	int i = 0, j = 0;
+		while (i < list1.size() && j < list2.size()) { //둘 모두 끝나기 전까지
+    		if(list1.get(i).compareTo(list2.get(j)) < 0) { //s1요소가 s2요소보다 먼저라면
+    			list3.add(list1.get(i)); //s1요소가 s3 안으로 들어가고
+    			i++;
+    		} else {
+    			list3.add(list2.get(j)); // 반대면 s2 요소가 s3 안으로 들어가고 다음 비교를 위해서 인덱스가 올라가?
+    			j++;
+    		}
+    	}
+    	while (i < list1.size()) { //s1 배열이 남았다면
+    		list3.add(list1.get(i));
+    		i++;
+    	}
+    	while (j < list2.size()) {
+    		list3.add(list2.get(j));
+    		j++;
+    	}
+    	return list3;
+    }
+
 	public static void main(String[] args) {
 		try {
 			Path input1 = Paths.get("a1.txt");
@@ -77,8 +91,8 @@ public class Test_중복없는리스트합병 {
 			String s2 = new String(bytes2);
 			System.out.println("입력 스트링: s1 = " + s1);
 			System.out.println("입력 스트링: s2 = " + s2);
-			String[] sarray1 = s1.split("[,\\s]+\r\n");// 자바 regex \n으로 검색
-			String[] sarray2 = s2.split("[,\\s]+\r\n");//file에서 enter키는 \r\n으로 해야 분리됨
+			String[] sarray1 = s1.split("[,\\s]+");// 자바 regex \n으로 검색
+			String[] sarray2 = s2.split("[,\\s]+");//file에서 enter키는 \r\n으로 해야 분리됨
 			showData("스트링 배열 sarray1", sarray1);
 			showData("스트링 배열 sarray2", sarray2);
 

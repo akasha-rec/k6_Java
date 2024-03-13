@@ -47,8 +47,7 @@ class IntStack5 { //외부 클래스
 
 	//--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
 	public int pop() throws EmptyIntStackException {
-		if (isEmpty()) {
-			// 스택이 빔
+		if (isEmpty()) {// 스택이 빔
 			throw new EmptyIntStackException();
 		} else {
 			return stk[--ptr];

@@ -15,85 +15,98 @@ import java.util.Scanner;
 //int형 고정 길이 스택
 
 class IntStack4 {
-	private List<Integer>[] stk; // 스택용 리스트
+	private List<Integer> stk; // 스택용 리스트
 	private int capacity; // 스택의 크기
 	private int ptr; // 스택 포인터
 
-//--- 실행시 예외: 스택이 비어있음 ---//
+	//--- 실행시 예외: 스택이 비어있음 ---//
 	public class EmptyIntStackException extends RuntimeException {
 		public EmptyIntStackException(String message) {
 			super(message);
 		}
 	}
 
-//--- 실행시 예외: 스택이 가득 참 ---//
+	//--- 실행시 예외: 스택이 가득 참 ---//
 	public class OverflowIntStackException extends RuntimeException {
 		public OverflowIntStackException(String message) {
 			super(message);
 		}
 	}
 
-//--- 생성자(constructor) ---//
+	//--- 생성자(constructor) ---//
 	public IntStack4(int maxlen) {
+		ptr = 0;
+		capacity = maxlen;
+		try {
+			stk = new ArrayList<>();
+		} catch (OutOfMemoryError e) {
+			capacity = 0;
+		}
 
-	}
+		//--- 스택에 x를 푸시 ---//
+		public void push(int x) throws OverflowIntStackException {
+			if (isFull()) { // 스택이 가득 참
+				throw new OverflowIntStackException("스택이 가득 찼습니다.");
+			} else { 
+				stk.add(x);
+				ptr++;
+		}
+		}
+		
+		//--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
+		public int pop() throws EmptyIntStackException {
+			if (isEmpty()) { // 스택이 빔
+				throw new EmptyIntStackException("스택이 비어있습니다.");
+		} else {
+			return stk.remove(ptr);
+			--ptr;
+		}
+		}
 
-//--- 스택에 x를 푸시 ---//
-	public void push(int x) throws OverflowIntStackException {
-		if (isFull()) // 스택이 가득 참
+		//--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
+		public int peek() throws EmptyIntStackException {
+			if (isEmpty()) // 스택이 빔
 
-	}
+		}
 
-//--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
-	public int pop() throws EmptyIntStackException {
-		if (isEmpty()) // 스택이 빔
-
-	}
-
-//--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
-	public int peek() throws EmptyIntStackException {
-		if (isEmpty()) // 스택이 빔
-
-	}
-
-//--- 스택을 비움 ---//
-	public void clear() throws EmptyIntStackException {
-		/*
-		 * stack을 empty로 만들어야 한다.
-		 * stack이 empty일 때 clear()가 호출된 예외 발생해야 한다 
-		 * pop()으로 구현하지 않고 대신에 while 문으로 remove()를 반복 실행한다
-		 */
-		if (isEmpty()) // 스택이 빔
+		//--- 스택을 비움 ---//
+		public void clear() throws EmptyIntStackException {
+			/*
+			 * stack을 empty로 만들어야 한다.
+			 * stack이 empty일 때 clear()가 호출된 예외 발생해야 한다 
+			 * pop()으로 구현하지 않고 대신에 while 문으로 remove()를 반복 실행한다
+			 */
+			if (isEmpty()) // 스택이 빔
 
 		}
 	}
 
-//--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
+	//--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
 	public int indexOf(int x) {
 
 	}
 
-//--- 스택의 크기를 반환 ---//
+	//--- 스택의 크기를 반환 ---//
 	public int getCapacity() {
 		return capacity;
 	}
 
-//--- 스택에 쌓여있는 데이터 갯수를 반환 ---//
+	//--- 스택에 쌓여있는 데이터 갯수를 반환 ---//
 	public int size() {
 		return ptr;
 	}
 
-//--- 스택이 비어있는가? ---//
+	//--- 스택이 비어있는가? ---//
 	public boolean isEmpty() {
 		return ptr <= 0;
 	}
 
-//--- 스택이 가득 찼는가? ---//
+	//--- 스택이 가득 찼는가? ---//
 	public boolean isFull() {
 		return ptr >= capacity;
 	}
-	
-//--- 스택 안의 모든 데이터를 바닥 → 정상 순서로 표시 ---//
+
+	//--- 스택 안의 모든 데이터를 바닥 → 정상 순서로 표시 ---//
 	public void dump() throws EmptyIntStackException{
 		if (isEmpty()) {
 
@@ -165,7 +178,7 @@ public class 실습4_2_2정수스택리스트 {
 					e.printStackTrace();
 				}
 				break;
-				
+
 			}
 		}
 	}
