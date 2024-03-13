@@ -15,7 +15,7 @@ import java.util.Scanner;
 //int형 고정 길이 스택
 
 class IntStack4 {
-	private List<Integer> stk; // 스택용 리스트
+	private List<Integer>[] stk; // 스택용 리스트
 	private int capacity; // 스택의 크기
 	private int ptr; // 스택 포인터
 
