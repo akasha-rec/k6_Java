@@ -1,5 +1,5 @@
+package Data_Ch04; //3번 학습순서 과제 1 객체 리스트
 
-package Chap4_스택과큐;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -86,13 +86,15 @@ class objectStack{
 
 //--- 스택에 x를 푸시 ---//
 	public boolean push(Point2 x) throws OverflowGenericStackException {
-
+		if (isFull())
+			throw new OverflowGenericStackException("push: Stack overflow");
 
 	}
 
 //--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
 	public Point2 pop() throws EmptyGenericStackException  {
-
+		if (isEmpty())
+			throw new EmptyGenericStackException("pop : Stack empty");
 	}
 
 //--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
@@ -166,7 +168,9 @@ public class 실습4_2_1객체스택_리스트 {
 				try {
 					s.push(p);
 				} catch(objectStack.OverflowGenericStackException e) {
-					System.out.println("stack이 가득찼있습니다.");
+					System.out.println(e.getMessage()); //생성자에서 입력했던 내용이 출력
+					e.printStackTrace();
+					System.out.println("stack이 가득 차있습니다.");
 				}
 				break;
 

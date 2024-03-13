@@ -1,4 +1,4 @@
-package Chap4_스택과큐;
+package Data_Ch04; //6번째 선행학습
 /*
  * 큐에서는 예외 클래스를 만드는 연습
  */

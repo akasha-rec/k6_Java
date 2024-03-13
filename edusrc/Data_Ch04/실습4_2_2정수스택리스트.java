@@ -1,5 +1,4 @@
-
-package Data_04;
+package Data_Ch04; //2번 선행학습
 
 import java.util.ArrayList;
 import java.util.List;
