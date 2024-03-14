@@ -79,8 +79,7 @@ class objectQueue2 {
 	public int enque(Point3 x) throws OverflowQueueException {
 		if (isFull()) 
 			throw new OverflowQueueException();			
-		que[rear] = x;
-		rear++;
+		que[rear++] = x;
 	}
 	
 	//--- 큐에서 데이터를 디큐 ---//
@@ -88,7 +87,8 @@ class objectQueue2 {
 		if (isEmpty())
 			throw new EmptyQueueException();
 		
-		Point3 x = que[front++];
+		Point3 x = que[front];
+		front++;
 		return x;
 	}
 
@@ -101,10 +101,13 @@ class objectQueue2 {
 
 	//--- 큐를 비움 ---peek처럼 구현//
 	public void clear() throws EmptyQueueException {
-		if (isEmpty())
-			throw new EmptyQueueException();
-		else
-			while(!isEmpty())
+		if (isEmpty()) {
+			throw new EmptyQueueException();			
+		} else {
+			for (int i = 0; i < que.length; i++)
+				que[i] = null;
+		}
+	}
 				
 	//--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
 	public int indexOf(Point3 x) {
@@ -128,17 +131,33 @@ class objectQueue2 {
 
 	//--- 큐가 비어있는가? ---//
 	public boolean isEmpty() {
-		
+		if(front == rear)
+			return true;
+		else
+			return false;
 	}
 
 	//--- 큐가 가득 찼는가? ---//
 	public boolean isFull() {
-
+		if (rear >= que.length)
+			return true;
+		else
+			return false;
 	}
 
 	//--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
+	public void dump() throws EmptyQueueException {
+		if (isEmpty()) {
+			throw new EmptyQueueException();			
+		} else {
+			for (int i = front; i < rear; i++)
+				System.out.print(que[i] + " ");
+		}
+		System.out.println();				
+	}
 
 }
+
 public class 실습4_4객체선형큐_배열 {
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
