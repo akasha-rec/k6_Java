@@ -52,6 +52,7 @@ class Queue4 {
 	public int deque() throws EmptyQueueException {
 		if (isEmpty())
 			throw new EmptyQueueException();
+//		front++; 를 처음 썼었는데 IndexOutOfBoundsException이 뜨고 인덱스가 순차적으로가 아닌 하나씩 띄우고 출력이 되서 리스트 크기 이상으로 가서 에러가 떴던 것 같다.
 		rear--;
 		int x = que.remove(front);
 		return x;
