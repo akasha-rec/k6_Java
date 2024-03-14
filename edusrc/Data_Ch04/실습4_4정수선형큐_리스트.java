@@ -52,7 +52,6 @@ class Queue4 {
 	public int deque() throws EmptyQueueException {
 		if (isEmpty())
 			throw new EmptyQueueException();
-//		front++;
 		rear--;
 		int x = que.remove(front);
 		return x;
@@ -127,9 +126,8 @@ class Queue4 {
 		else
 			return false;
 	}
-
-
 }
+
 public class 실습4_4정수선형큐_리스트 {
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);

@@ -7,8 +7,8 @@ import java.util.Scanner;
 import Chap4_스택과큐.Queue4.EmptyQueueException;
 
 /*
-* Queue of ArrayList of Point
-*/
+ * Queue of ArrayList of Point
+ */
 
 class Point3 {
 	private int ix;
@@ -49,49 +49,49 @@ class Point3 {
 
 //int형 고정 길이 큐
 class objectQueue2 {
-  private Point3[] que;
+	private Point3[] que;
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
-//	private int num; // 현재 데이터 개수
+	//	private int num; // 현재 데이터 개수
 
 	public objectQueue2 (int maxlen) {//배열의 크기만 매개변수
 		que = new Point3[maxlen];
 		this.capacity = maxlen;
 		front = rear = 0;
 	}
-//	public objectQueue2 (que, capacity, front, rear, num)
-//		
+	//	public objectQueue2 (que, capacity, front, rear, num)
+	//		
 
-//--- 실행시 예외: 큐가 비어있음 ---//
-
-
-//--- 실행시 예외: 큐가 가득 찼음 ---//
+	//--- 실행시 예외: 큐가 비어있음 ---//
 
 
-//--- 생성자(constructor) ---//
-public objectQueue2(int maxlen) {
+	//--- 실행시 예외: 큐가 가득 찼음 ---//
 
-}
 
-//--- 큐에 데이터를 인큐 ---//
+	//--- 생성자(constructor) ---//
+	public objectQueue2(int maxlen) {
+
+	}
+
+	//--- 큐에 데이터를 인큐 ---//
 	public int enque(Point3 x) throws OverflowQueueException {
 
 	}
 
-//--- 큐에서 데이터를 디큐 ---//
+	//--- 큐에서 데이터를 디큐 ---//
 	public Point3 deque() throws EmptyQueueException {
 
 	}
 
-//--- 큐에서 데이터를 피크(프런트 데이터를 들여다봄) ---//
+	//--- 큐에서 데이터를 피크(프런트 데이터를 들여다봄) ---//
 	public Point3 peek() throws EmptyQueueException {
 
 	}
 
-//--- 큐를 비움 ---peek처럼 구현//
+	//--- 큐를 비움 ---peek처럼 구현//
 
-//--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
+	//--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
 	public int indexOf(Point3 x) {
 		for (int i = 0; i < num; i++) {
 			int idx = (i + front) % capacity;
@@ -101,27 +101,27 @@ public objectQueue2(int maxlen) {
 		return -1; // 검색 실패
 	}
 
-//--- 큐의 크기를 반환 ---//
+	//--- 큐의 크기를 반환 ---//
 	public int getCapacity() {
 		return capacity;
 	}
 
-//--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
+	//--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 	public int size() {
-//		return num;
+		//		return num;
 	}
 
-//--- 큐가 비어있는가? ---//
+	//--- 큐가 비어있는가? ---//
 	public boolean isEmpty() {
 		return num <= 0;
 	}
 
-//--- 큐가 가득 찼는가? ---//
+	//--- 큐가 가득 찼는가? ---//
 	public boolean isFull() {
 		return num >= capacity;
 	}
 
-//--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
+	//--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
 
 }
 public class 실습4_4객체선형큐_배열 {
@@ -170,10 +170,10 @@ public class 실습4_4객체선형큐_배열 {
 				break;
 
 			case 4: // 덤프
-	
+
 				break;
 			case 5: //clear
-		
+
 				break;
 			default:
 				break;
