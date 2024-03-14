@@ -15,10 +15,11 @@ import java.util.Random;
 
 class Queue4 {
 	private List<Integer> que;//원형큐로 구현하지 않는다 
-	private int capacity; // 큐의 크기
+	private int capacity; // 큐의 크기 - 배열의 length
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
-	private int num; // 현재 데이터 개수
+//	private int num; // 현재 데이터 개수
+	
 
 //--- 실행시 예외: 큐가 비어있음 ---//
 
@@ -75,7 +76,7 @@ public Queue4(int maxlen) {
 
 //--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 	public int size() {
-		return num;
+//		return num;
 	}
 
 //--- 큐가 비어있는가? ---//

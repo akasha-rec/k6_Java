@@ -53,7 +53,15 @@ class objectQueue2 {
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
-	private int num; // 현재 데이터 개수
+//	private int num; // 현재 데이터 개수
+
+	public objectQueue2 (int maxlen) {//배열의 크기만 매개변수
+		que = new Point3[maxlen];
+		this.capacity = maxlen;
+		front = rear = 0;
+	}
+//	public objectQueue2 (que, capacity, front, rear, num)
+//		
 
 //--- 실행시 예외: 큐가 비어있음 ---//
 
@@ -100,7 +108,7 @@ public objectQueue2(int maxlen) {
 
 //--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 	public int size() {
-		return num;
+//		return num;
 	}
 
 //--- 큐가 비어있는가? ---//

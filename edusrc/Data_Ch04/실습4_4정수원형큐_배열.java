@@ -15,7 +15,7 @@ class IntQueue3 {
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
-	private int num; // 현재 데이터 개수
+//	private int num; // 현재 데이터 개수
 
 //--- 실행시 예외: 큐가 비어있음 ---//
 
