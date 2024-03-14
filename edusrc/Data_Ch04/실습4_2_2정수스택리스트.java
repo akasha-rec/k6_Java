@@ -42,7 +42,7 @@ class IntStack4 {
 		} catch (OutOfMemoryError e) {
 			capacity = 0;
 		}
-
+	}
 		//--- 스택에 x를 푸시 ---//
 		public void push(int x) throws OverflowIntStackException {
 			if (isFull()) { // 스택이 가득 참
@@ -58,15 +58,17 @@ class IntStack4 {
 			if (isEmpty()) { // 스택이 빔
 				throw new EmptyIntStackException("스택이 비어있습니다.");
 		} else {
-			return stk.remove(ptr);
 			--ptr;
+			return stk.remove(ptr);
 		}
 		}
 
 		//--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
 		public int peek() throws EmptyIntStackException {
 			if (isEmpty()) // 스택이 빔
-
+				throw new EmptyIntStackException("스택이 비어있습니다.");
+			else
+				return stk.get(ptr-1);
 		}
 
 		//--- 스택을 비움 ---//
@@ -77,13 +79,18 @@ class IntStack4 {
 			 * pop()으로 구현하지 않고 대신에 while 문으로 remove()를 반복 실행한다
 			 */
 			if (isEmpty()) // 스택이 빔
-
-		}
+				throw new EmptyIntStackException("스택이 비어있습니다.");
+			else
+				ptr = 0;
 	}
 
 	//--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
 	public int indexOf(int x) {
-
+		for (int i = ptr-1; i >= 0; i--) {
+			if (stk.get(i) == x)
+				return i;
+		}
+		return -1;
 	}
 
 	//--- 스택의 크기를 반환 ---//
@@ -109,10 +116,15 @@ class IntStack4 {
 	//--- 스택 안의 모든 데이터를 바닥 → 정상 순서로 표시 ---//
 	public void dump() throws EmptyIntStackException{
 		if (isEmpty()) {
-
+			throw new EmptyIntStackException("스택이 비어있습니다.");
+		} else {
+			for (int i = 0; i < ptr; i++) 
+				System.out.print(stk.get(i) + " ");
+			System.out.println();
 		}
 	}
 }
+
 public class 실습4_2_2정수스택리스트 {
 
 	public static void main(String[] args) {
@@ -166,7 +178,7 @@ public class 실습4_2_2정수스택리스트 {
 				try {
 					s.dump();
 				} catch (IntStack4.EmptyIntStackException e) {
-					System.out.println("스택이 비어있습니다." + e.getMessage());
+					System.out.println(e.getMessage());
 					e.printStackTrace();
 				}
 				break;
@@ -174,7 +186,7 @@ public class 실습4_2_2정수스택리스트 {
 				try {
 					s.clear();
 				} catch (IntStack4.EmptyIntStackException e) {
-					System.out.println("스택이 비어있습니다." + e.getMessage());
+					System.out.println(e.getMessage());
 					e.printStackTrace();
 				}
 				break;

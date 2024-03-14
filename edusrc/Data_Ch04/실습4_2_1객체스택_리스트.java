@@ -3,12 +3,11 @@ package Data_Ch04; //3번 학습순서 과제 1 객체 리스트
 import java.util.ArrayList;
 import java.util.List;
 /*
-* objectStack에 Point2 객체를 push, pop하는 코드를 구현 실습한다
-*/
+ * objectStack에 Point2 객체를 push, pop하는 코드를 구현 실습한다
+ */
 import java.util.Random;
 import java.util.Scanner;
 
-import Chap4_스택과큐.IntStack4.EmptyIntStackException;
 class Point2 {
 	private int ix;
 	private int iy;
@@ -55,8 +54,8 @@ class objectStack{
 			super(message);
 		}
 	}
-/*
-* public class Exception extends Throwable {
+	/*
+	 * public class Exception extends Throwable {
  private static final long serialVersionUID = -3387516993124229948L;
  private String detailMessage;
 
@@ -67,42 +66,62 @@ class objectStack{
 
  // 다른 필드, 메서드 등이 여기에 정의될 수 있음
 }
-*/
+	 */
 	//--- 실행시 예외: 스택이 가득 참 ---//
 	public class OverflowGenericStackException extends RuntimeException {
-
+		public OverflowGenericStackException(String message) {
+			super(message);
+		}
 	}
 
- private List<Point2> data;           // 스택용 배열
+	private List<Point2> data;           // 스택용 배열
 	//private List<T> data;
 	private int capacity; // 스택의 크기
 	private int top; // 스택 포인터
 
-//--- 생성자(constructor) ---//
+	//--- 생성자(constructor) ---//
 	public objectStack(int capacity) {
 		top = 0;
-
+		this.capacity = capacity;
+		try {
+			data = new ArrayList<>();
+		} catch (OutOfMemoryError e){
+			capacity = 0;
+		}
 	}
-
-//--- 스택에 x를 푸시 ---//
+	
+	//--- 스택에 x를 푸시 ---//
 	public boolean push(Point2 x) throws OverflowGenericStackException {
 		if (isFull())
 			throw new OverflowGenericStackException("push: Stack overflow");
-
+		else {
+			top++;
+			data.add(x);
+			System.out.println(x);
+			return true;
+		}
 	}
 
-//--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
+	//--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
 	public Point2 pop() throws EmptyGenericStackException  {
 		if (isEmpty())
 			throw new EmptyGenericStackException("pop : Stack empty");
+		else {
+			--top;
+			return data.remove(top);
+		}
 	}
 
-//--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
+	//--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
 	public Point2 peek() throws EmptyGenericStackException  {
-
+		if (isEmpty()) {
+			throw new EmptyGenericStackException("peek : Stack empty");
+		} else {
+			return data.get(top-1);
+		}
 	}
 
-//--- 스택을 비움 ---//
+	//--- 스택을 비움 ---//
 	public void clear() throws EmptyGenericStackException {
 		/*
 		 * stack을 empty로 만들어야 한다.
@@ -110,9 +129,21 @@ class objectStack{
 		 * pop()으로 구현하지 않고 대신에 while 문으로 remove()를 반복 실행한다
 		 */
 		if (isEmpty()) // 스택이 빔
-
+			throw new EmptyGenericStackException("clear : Stack empty");
+		else
+			top = 0;
 	}
-//--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
+
+	public void dump() throws EmptyGenericStackException {
+		if (isEmpty()) 
+			throw new EmptyGenericStackException("dump : Stack empty");
+		else
+			for (int i = 0; i < top; i++)
+				System.out.print(data.get(i) + " ");
+		System.out.println();
+	}
+
+	//--- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
 	public int indexOf(Point2 x) {
 		for (int i = top - 1; i >= 0; i--) // 꼭대기 쪽부터 선형 검색
 			if (data.get(i).equals(x))
@@ -120,22 +151,22 @@ class objectStack{
 		return -1; // 검색 실패
 	}
 
-//--- 스택의 크기를 반환 ---//
+	//--- 스택의 크기를 반환 ---//
 	public int getCapacity() {
 		return capacity;
 	}
 
-//--- 스택에 쌓여있는 데이터 갯수를 반환 ---//
+	//--- 스택에 쌓여있는 데이터 갯수를 반환 ---//
 	public int size() {
 		return top;
 	}
 
-//--- 스택이 비어있는가? ---//
+	//--- 스택이 비어있는가? ---//
 	public boolean isEmpty() {
 		return top <= 0;
 	}
 
-//--- 스택이 가득 찼는가? ---//
+	//--- 스택이 가득 찼는가? ---//
 	public boolean isFull() {
 		return top >= capacity;
 	}
@@ -193,10 +224,22 @@ public class 실습4_2_1객체스택_리스트 {
 				break;
 
 			case 4: // 덤프도 피크처럼 구현
-
+				try {
+					s.dump();
+				} catch (objectStack.EmptyGenericStackException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+					System.out.println("stack이 비어있습니다.");
+				}
 				break;
 			case 5: //clear도 피크처럼 구현 
-
+				try {
+					s.clear();
+				} catch (objectStack.EmptyGenericStackException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+					System.out.println("stack이 비어있습니다.");
+				}
 				break;
 			}
 		}
