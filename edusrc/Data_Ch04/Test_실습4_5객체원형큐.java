@@ -66,15 +66,18 @@ class CircularQueue {
 		if(isFull()) {
 			throw new OverflowQueueException("push: circular queue overflow"); 
 		}
-
+		rear++;
+		if (front == rear)
+			isEmptyTag = false;
 	}
 
 	Point5 pop() throws EmptyQueueException{
 		if(isEmpty()) {
 			throw new EmptyQueueException("pop: circular queue overflow"); 
 		}
-
-
+		front++;
+		if (front == rear)
+			is
 	}
 
 	 void clear() throws EmptyQueueException{
@@ -102,7 +105,10 @@ class CircularQueue {
 
 	//--- 원형 큐가 가득 찼는가? --- 수정 필요//
 		public boolean isFull() {
-	
+			if (front == rear && !isEmptyTag)
+				return true;
+			else
+				return false;
 		}
 
 		public void dump() throws EmptyQueueException{
