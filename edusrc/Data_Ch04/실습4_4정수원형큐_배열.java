@@ -18,37 +18,60 @@ class IntQueue3 {
 //	private int num; // 현재 데이터 개수
 
 //--- 실행시 예외: 큐가 비어있음 ---//
-
+	public class EmptyIntQueue3Exception extends RuntimeException {
+		public EmptyIntQueue3Exception() {};
+	}
 
 //--- 실행시 예외: 큐가 가득 찼음 ---//
-
+	public class OverflowIntQueue3Exception extends RuntimeException {
+		public OverflowIntQueue3Exception() {};
+	}
 
 //--- 생성자(constructor) ---//
 	public IntQueue3(int maxlen) {
-
+		capacity = maxlen;
+		front=rear=0;
+		try {
+			que = new int[maxlen];
+		} catch (OutOfMemoryError e) {
+			capacity = 0;
+		}
 	}
 
 //--- 큐에 데이터를 인큐 ---//
-	public int enque(int x) throws OverflowIntQueue3Exception {
-
-	}
-
+	public void enque(int x) throws OverflowIntQueue3Exception {
+		if (isFull())
+			throw new OverflowIntQueue3Exception();
+		que[rear] = x;			
+		rear = (rear + 1) % capacity;
+		}
+	
 //--- 큐에서 데이터를 디큐 ---//
 	public int deque() throws EmptyIntQueue3Exception {
 		if (isEmpty())
-
+			throw new EmptyIntQueue3Exception();
+		front = (front + 1) % capacity;
+		int x = que[front];
+		return x;
 	}
 
 //--- 큐에서 데이터를 피크(프런트 데이터를 들여다봄) ---//
 	public int peek() throws EmptyIntQueue3Exception {
-
+		if (isEmpty())
+			throw new EmptyIntQueue3Exception();
+		return que[front];
 	}
 
 //--- 큐를 비움 ---//
-
+	public void clear() throws EmptyIntQueue3Exception {
+		if (isEmpty())
+			throw new EmptyIntQueue3Exception();
+		front=rear=0;
+	}
+	
 //--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
 	public int indexOf(int x) {
-		for (int i = 0; i < num; i++) {
+		for (int i = 0; i < capacity; i++) {
 			int idx = (i + front) % capacity;
 			if (que[idx] == x) // 검색 성공
 				return idx;
@@ -63,23 +86,35 @@ class IntQueue3 {
 
 //--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 	public int size() {
-		return num;
+		if (front <= rear)
+			return rear - front;
+		else
+		return capacity - (front - rear);
 	}
 
 //--- 원형 큐가 비어있는가? --- 수정 필요//
 	public boolean isEmpty() {
-		return num <= 0;
+		return front==rear;
 	}
 
 //--- 원형 큐가 가득 찼는가? --- 수정 필요//
 	public boolean isFull() {
-		return num >= capacity;
-	}
+			if (((rear + 1) % capacity) == front) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
 
 //--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
-
+	public void dump() throws EmptyIntQueue3Exception {
+		if (isEmpty())
+			throw new EmptyIntQueue3Exception();
+		for (int i = 0; i < size(); i++)
+			System.out.print(que[(i+front)%capacity]+" ");
+		System.out.println();
+	}
 }
-
 public class 실습4_4정수원형큐_배열 {
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
@@ -112,9 +147,13 @@ public class 실습4_4정수원형큐_배열 {
 				break;
 
 			case 3: // 피크
-
+				try {
+				p = oq.peek();
+				} catch (IntQueue3.EmptyIntQueue3Exception e) {
+					System.out.println("큐가 비어 있습니다.");
+				}
 				break;
-
+				
 			case 4: // 덤프
 				try {
 					oq.dump();
@@ -124,8 +163,13 @@ public class 실습4_4정수원형큐_배열 {
 				}
 				break;
 			case 5: //clear
-
+				try {
+					oq.clear();
+				} catch (IntQueue3.EmptyIntQueue3Exception e) {
+					System.out.println("큐가 비어 있습니다.");
+				}
 				break;
+				
 			default:
 				break;
 			}

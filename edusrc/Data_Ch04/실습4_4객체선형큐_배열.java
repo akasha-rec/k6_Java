@@ -4,7 +4,6 @@ package Data_Ch04; //5번째 선행학습
 import java.util.Random;
 import java.util.Scanner;
 
-import Chap4_스택과큐.Queue4.EmptyQueueException;
 
 /*
  * Queue of ArrayList of Point
@@ -70,16 +69,21 @@ class objectQueue2 {
 
 	//--- 생성자(constructor) ---//
 	public objectQueue2(int maxlen) {
-		que = new Point3[maxlen];
-		this.capacity = maxlen;
+		capacity = maxlen;
 		front = rear = 0;
+		try {
+			que = new Point3[capacity];
+		} catch (OutOfMemoryError e) {
+			capacity = 0;
+		}
 	}
 
 	//--- 큐에 데이터를 인큐 ---//
-	public int enque(Point3 x) throws OverflowQueueException {
+	public void enque(Point3 x) throws OverflowQueueException {
 		if (isFull()) 
-			throw new OverflowQueueException();			
-		que[rear++] = x;
+			throw new OverflowQueueException();				
+		que[rear] = x;
+		rear++;
 	}
 	
 	//--- 큐에서 데이터를 디큐 ---//
@@ -87,8 +91,10 @@ class objectQueue2 {
 		if (isEmpty())
 			throw new EmptyQueueException();
 		
+		rear--;
 		Point3 x = que[front];
-		front++;
+		for (int i = 0; i <rear; i++)
+			que[i] = que[i+1];
 		return x;
 	}
 
@@ -101,13 +107,14 @@ class objectQueue2 {
 
 	//--- 큐를 비움 ---peek처럼 구현//
 	public void clear() throws EmptyQueueException {
-		if (isEmpty()) {
+		if (isEmpty()) 
 			throw new EmptyQueueException();			
-		} else {
+		else {
 			for (int i = 0; i < que.length; i++)
 				que[i] = null;
+			}
+			front=rear=0;
 		}
-	}
 				
 	//--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
 	public int indexOf(Point3 x) {
@@ -126,23 +133,17 @@ class objectQueue2 {
 
 	//--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 	public int size() {
-		return que.length;
+		return rear-front;
 	}
 
 	//--- 큐가 비어있는가? ---//
 	public boolean isEmpty() {
-		if(front == rear)
-			return true;
-		else
-			return false;
+		return front == rear;
 	}
 
 	//--- 큐가 가득 찼는가? ---//
 	public boolean isFull() {
-		if (rear >= que.length)
-			return true;
-		else
-			return false;
+		return rear >= que.length;
 	}
 
 	//--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
@@ -204,10 +205,20 @@ public class 실습4_4객체선형큐_배열 {
 				break;
 
 			case 4: // 덤프
-
+				try {
+					oq.dump();
+				} catch (objectQueue2.EmptyQueueException e) {
+					System.out.println("큐가 비어 있습니다.");
+					e.printStackTrace();
+				}
 				break;
 			case 5: //clear
-
+				try {
+					oq.clear();
+				} catch (objectQueue2.EmptyQueueException e) {
+					System.out.println("큐가 비어 있습니다.");
+					e.printStackTrace();
+				}
 				break;
 			default:
 				break;
