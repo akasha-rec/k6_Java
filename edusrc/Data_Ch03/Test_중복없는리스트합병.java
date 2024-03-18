@@ -43,12 +43,9 @@ public class Test_중복없는리스트합병 {
 
 
 	static void trimSpace(String[]arr) { //공백 제거 for문 > arr[i].trim
-		int i = 0;
-		while (i < arr.length) {
+		for (int i = 0; i < arr.length; i++)
 			arr[i] = arr[i].trim();
-			i++;
 		}
-	}
 	
 	static void makeList(String[] sarray1, List<String>list1) {
 		for (String item : sarray1) {
