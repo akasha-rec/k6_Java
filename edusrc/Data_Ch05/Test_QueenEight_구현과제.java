@@ -178,14 +178,15 @@ public class Test_QueenEight_구현과제 {
 		count++;
 		ix++;
 		st.push(p);// 스택에 현 위치 객체를 push
-		while (true) { //175p
+		while (true) {
 			if (count == 8) { //Q 8개를 모두 놓을 수 있는 경우 1개 출력
 				showQueens(d);
 				break;
 			}
+			
 			iy = nextMove(d, ix, iy);
-			if (iy != -1) { //놓을 수 있고, 이동할 수도 있어서 push하고 다음으로 이동하고자?
-				/*				p = new Point(ix, iy);
+			if (iy != -1) { //이동할 수 있어서 push
+				/*p = new Point(ix, iy);
 				st.push(p);*/
 				st.push(new Point(ix, iy));
 				d[ix][iy] = 1; //놓았다.
@@ -193,7 +194,8 @@ public class Test_QueenEight_구현과제 {
 				iy=0;//0열부터 다시 시작
 				count++;//놓을 수 있으니까 Q가 하나 생긴다고 생각
 				continue;
-			} else {//놓을 수 없을 때 pop하는 코드 push할 때 출력하는 코드를 왜 썼을까...
+				
+			} else {//놓을 수 없을 때 pop하는 코드. push할 때 출력하는 코드를 왜 썼을까...
 				p = st.pop(); //위치를 pop
 				ix = p.getX(); //pop한 위치의 좌표를 갖고 오는 메서드
 				iy = p.getY();
@@ -290,7 +292,7 @@ public class Test_QueenEight_구현과제 {
 		return -1; //이동하지 못한다.
 	}
 
-	static void showQueens(int[][] data) {// 배열 출력
+	static void showQueens(int[][] data) {// 퀸이 배치된 결과값을 출력해주는 메서드. for문에서 무조건 괄호 써주기.
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[0].length; j++) {
 				System.out.print(data[i][j] + " ");			
