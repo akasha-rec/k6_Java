@@ -33,11 +33,11 @@ class Point {
 		return "<" + ix + ", " + iy + ">";
 	}
 
-	public int getX() {
+	public int getX() {//Point 객체의 좌표 반환
 		return ix;
 	}
 
-	public int getY() {
+	public int getY() {//Point 객체의 좌표 설정
 		return iy;
 	}
 
@@ -195,12 +195,12 @@ public class Test_QueenEight_구현과제 {
 				count++;//놓을 수 있으니까 Q가 하나 생긴다고 생각
 				continue;
 				
-			} else {//놓을 수 없을 때 pop하는 코드. push할 때 출력하는 코드를 왜 썼을까...
+			} else {//이동할 수 없을 때 pop. push할 때 출력하는 코드를 왜 썼을까...
 				p = st.pop(); //위치를 pop
 				ix = p.getX(); //pop한 위치의 좌표를 갖고 오는 메서드
 				iy = p.getY();
-				d[ix][iy] = 0; //pop한 위치를 0으로 만든다.
-				iy++;
+				d[ix][iy] = 0; //이전 위치의 퀸을 제거하고
+				iy++;//다음 열 탐색
 				count--;
 				continue;
 			} 	
