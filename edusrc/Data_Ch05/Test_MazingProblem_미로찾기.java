@@ -129,7 +129,7 @@ class Offsets3 {
 			Items temp = new Items(0, 0, 0);//N :: 0
 			temp.x = 1;
 			temp.y = 1;
-			temp.dir = 2;//E:: 2
+			temp.dir = 2;//E:: 2 
 			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시
 			st.push(temp);
 
@@ -198,7 +198,7 @@ class Offsets3 {
 			for (int i = 0; i < 14; i++) {
 				for (int j = 0; j < 17; j++) {
 
-					// input[][]을 maze[][]로 변환
+					// input[][]을 maze[][]로 변환 : 주변에 1로 둘러싸게(못 나가게)
 				}
 			}
 			System.out.println("maze[12,15]::");
