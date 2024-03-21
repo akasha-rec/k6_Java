@@ -17,12 +17,12 @@ class 실습6_1BubbleSort {
 
  //--- 버블 정렬 ---//
  static void bubbleSort(int[] a, int n) {
-	 int count = 0;
+	 int count = 0; //비교횟수
      for (int i = 0; i < n - 1; i++)
-         for (int j = n - 1; j > i; j--)
+         for (int j = n - 1; j > i; j--) //버블 정렬
          {
         	 count++;
-             if (a[j - 1] > a[j])
+             if (a[j - 1] > a[j]) //역순이면 교환
                  swap(a, j - 1, j);
          }
      System.out.println("\n비교 횟수 = " + count);

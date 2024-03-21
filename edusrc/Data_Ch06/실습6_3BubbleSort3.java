@@ -18,7 +18,7 @@ class 실습6_3BubbleSort3 {
      int k = 0;                               // a[k]보다 앞쪽은 정렬을 마침
      while (k < n - 1) {
          int last = n - 1;                    // 마지막으로 교환한 위치
-         for (int j = n - 1; j > k; j--)
+         for (int j = n - 1; j > k; j--)//k보다 작은 인덱스는 skip
          {
         	 count++;
              if (a[j - 1] > a[j]) {
@@ -26,7 +26,7 @@ class 실습6_3BubbleSort3 {
                  last = j;
              }
          }
-         k = last;
+         k = last;//마지막 교환이 일어난 인덱스 위치
      }
      System.out.println("\n비교횟수 = " + count);
  }

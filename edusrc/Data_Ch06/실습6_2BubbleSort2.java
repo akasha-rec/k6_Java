@@ -16,16 +16,16 @@ class 실습6_2BubbleSort2 {
  static void bubbleSort(int[] a, int n) {
 	 int count = 0;
      for (int i = 0; i < n - 1; i++) {
-         int exchg = 0;                          // 패스에서 교환하는 횟수
-         for (int j = n - 1; j > i; j--)
+         int exchg = 0;// 패스에서 교환하는 횟수, 교환했는지 알고 싶어서 세운 태그
+         for (int j = n - 1; j > i; j--) //버블이 이동하는 패스
          {
         	 count++;
              if (a[j - 1] > a[j]) {
                  swap(a, j - 1, j);
-                 exchg++;
+                 exchg++;//교환이 일어났다면 증가할 것이다.
              }
          }
-         if (exchg == 0) break;                // 교환이 이루어지지 않으면 멈춤
+         if (exchg == 0) break;// 교환이 이루어지지 않으면 멈춤
      }
      System.out.println("\n비교 횟수 = " + count);
  }
