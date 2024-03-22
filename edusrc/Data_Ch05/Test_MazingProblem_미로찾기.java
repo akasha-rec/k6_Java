@@ -182,6 +182,7 @@ class Offsets3 {
 					{ 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
 					{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 },
 					{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }};
+			
 			for (int ia = 0; ia < 8; ia++)
 				moves[ia] = new Offsets(0, 0);//배열에 offsets 객체를 치환해야 한다.
 			moves[0].a = -1;	moves[0].b = 0;
@@ -195,12 +196,18 @@ class Offsets3 {
 			//Directions d;
 			//d = Directions.N;
 			//d = d + 1;//java는 지원안됨
-			for (int i = 0; i < 14; i++) {
+			
+			for (int i = 0; i < 14; i++) {// input[][]을 maze[][]로 변환 : 
 				for (int j = 0; j < 17; j++) {
-
-					// input[][]을 maze[][]로 변환 : 주변에 1로 둘러싸게(못 나가게)
+					if(i == 0 || i == 13 || j == 0 || j == 16) {//행 인덱스가 0이거나 16일 때, 열 인덱스가 0이거나 16일 때 1 입력하고자
+						maze[i][j] = 1;//각 경계 영역의 maze 배열값을 1로 설정 > 어떤 지역에서도 8방향을 고려하게		
+					} else {//input 배열의 요소를 maze 배열 안으로 넣어줘서
+						maze[i-1][j-1] = input[i][j];
+					}
+					
 				}
 			}
+			
 			System.out.println("maze[12,15]::");
 			showMatrix(maze, 13, 16);
 		
