@@ -119,42 +119,49 @@ class Offsets3 {
 }
 
 	public class Test_MazingProblem_미로찾기 {
-
-		static Offsets[] moves = new Offsets[8];//static을 선언하는 이유를 알아야 한다
-
+		//Offsets3는 이동 방향에 대한 정보
+		static Offsets3[] moves = new Offsets3[8];//static을 선언하는 이유를 알아야 한다
+		
 		public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 
-			mark[1][1] = 1;
-			StackList st = new StackList(50);
-			Items temp = new Items(0, 0, 0);//N :: 0
-			temp.x = 1;
-			temp.y = 1;
+			mark[1][1] = 1;//시작점
+			StackList st = new StackList(50); //위치를 push하고 pop할 stack 생성
+			Items3 temp = new Items3(0, 0, 0);//N :: 0 enum Direction에서 순서를 정해놨는데 그 중 [0]
+			temp.x = 1; // (1, 1)
+			temp.y = 1; //
 			temp.dir = 2;//E:: 2 
 			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시
-			st.push(temp);
+			st.push(temp);//시작 위치를 stack에 저장하고 탐색 시작
 
-			while (!st.isEmpty()) // stack not empty
-			{
-				Items tmp = st.pop(); // unstack
+			while (!st.isEmpty()) {// 스택이 비어있지 X > 탐색의 끝이 나지 X > pop하면서 위치 수정
+				Items3 tmp = st.pop(); // unstack
 				int i = tmp.x;
 				int j = tmp.y;
-				int d = tmp.dir;
+				int d = tmp.dir; //0~7의 값을 가지고
 				mark[i][j] = 1;//backtracking 궤적은 1로 표시
-				while (d < 8) // moves forward
-				{
+				
+				while (d < 8) {//모든 방향을 다 고려
+					int g = i+moves[d].a;//g는 다음 행 방향 i(이전 위치) + a만큼
+					int h = j+moves[d].b;//h는 다음 열 방향 j(이전 위치) + b만큼
 
-					if ((g == ix) && (h == iy)) { // reached exit
-													// output path
-
+					if ((g == ix) && (h == iy)) { // reached exit, output path
+						mark[i][j] = 2;
+						mark[g][h] = 2;
+						return;
 					}
-					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
-
-
-					} else
-
+					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // 아직 안 간 곳 > 이동 가능한지 따져
+						mark[i][j] = 1; //혹은 maze[i][j] = 1;
+						Items3 tmp1 = new Items3(i, j, d+1);//stack에 현재 위치를 push할 때 다음 이동 방향인 dir를 같이 포함한다.
+						st.push(tmp1);
+						i = g; //현재 위치에서 다음 위치로 업데이트
+						j = h;
+						d = 0; //북쪽부터 재탐색
+					} else {
+						d++;
 				}
 			}
 			System.out.println("no path in maze ");
+		}
 		}
 		static void showMatrix(int[][]d, int row, int col) {
 			for (int i = 0; i <= row; i++) {
@@ -184,7 +191,7 @@ class Offsets3 {
 					{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }};
 			
 			for (int ia = 0; ia < 8; ia++)
-				moves[ia] = new Offsets(0, 0);//배열에 offsets 객체를 치환해야 한다.
+				moves[ia] = new Offsets3(0, 0);//배열에 offsets 객체를 치환해야 한다.
 			moves[0].a = -1;	moves[0].b = 0;
 			moves[1].a = -1;	moves[1].b = 1;
 			moves[2].a = 0;		moves[2].b = 1;
@@ -199,23 +206,23 @@ class Offsets3 {
 			
 			for (int i = 0; i < 14; i++) {// input[][]을 maze[][]로 변환 : 
 				for (int j = 0; j < 17; j++) {
-					if(i == 0 || i == 13 || j == 0 || j == 16) {//행 인덱스가 0이거나 16일 때, 열 인덱스가 0이거나 16일 때 1 입력하고자
-						maze[i][j] = 1;//각 경계 영역의 maze 배열값을 1로 설정 > 어떤 지역에서도 8방향을 고려하게		
-					} else {//input 배열의 요소를 maze 배열 안으로 넣어줘서
-						maze[i-1][j-1] = input[i][j];
+					if(i == 0 || j == 0 || i == 13 || j == 16) //행 인덱스가 0이거나 16일 때, 열 인덱스가 0이거나 16일 때 1 입력하고자
+						maze[i][j] = 1;//각 경계 영역의 maze 배열값을 1로 설정 > 어떤 지역에서도 8방향을 고려하게?	
+					else {//input 배열의 요소를 maze 배열 안으로 넣어줘서
+						maze[i][j] = input[i-1][j-1];
 					}
-					
+					mark[i][j] = 0;
 				}
 			}
 			
-			System.out.println("maze[12,15]::");
+			System.out.println("maze[12,15]:: 문제");
 			showMatrix(maze, 13, 16);
 		
-			System.out.println("mark::");
+			System.out.println("mark:: 풀기 전");
 			showMatrix(mark, 13, 16);
 
 			path(maze, mark, 12, 15);
-			System.out.println("mark::");
+			System.out.println("mark:: 해결");
 			showMatrix(mark, 12, 15);
 		}
 	}
