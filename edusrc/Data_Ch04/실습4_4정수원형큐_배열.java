@@ -15,6 +15,7 @@ class IntQueue3 {
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
+	boolean isFull = false;
 //	private int num; // 현재 데이터 개수
 
 //--- 실행시 예외: 큐가 비어있음 ---//
@@ -42,16 +43,18 @@ class IntQueue3 {
 	public void enque(int x) throws OverflowIntQueue3Exception {
 		if (isFull())
 			throw new OverflowIntQueue3Exception();
-		que[rear] = x;			
-		rear = (rear + 1) % capacity;
+		que[rear++] = x;
+		if (rear==capacity)
+			rear = 0;
 		}
 	
 //--- 큐에서 데이터를 디큐 ---//
 	public int deque() throws EmptyIntQueue3Exception {
 		if (isEmpty())
 			throw new EmptyIntQueue3Exception();
-		front = (front + 1) % capacity;
-		int x = que[front];
+		int x = que[front++];
+		if (front == capacity)
+			front = 0;
 		return x;
 	}
 
@@ -99,11 +102,7 @@ class IntQueue3 {
 
 //--- 원형 큐가 가득 찼는가? --- 수정 필요//
 	public boolean isFull() {
-			if (((rear + 1) % capacity) == front) {
-	            return true;
-	        } else {
-	            return false;
-	        }
+		return front==rear;
 	    }
 
 //--- 큐 안의 모든 데이터를 프런트 → 리어 순으로 출력 ---//
@@ -133,7 +132,7 @@ public class 실습4_4정수원형큐_배열 {
 				try {
 					oq.enque(rndx);
 				} catch(IntQueue3.OverflowIntQueue3Exception e) {
-					System.out.println("stack이 가득찼있습니다.");
+					System.out.println("stack이 가득 차있습니다.");
 				}
 				break;
 
