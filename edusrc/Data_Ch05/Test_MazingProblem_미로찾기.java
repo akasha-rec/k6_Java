@@ -1,4 +1,4 @@
-package Data_Ch05; //하고 있는데 모르겠다...
+package Data_Ch05; //하고 있는데 모르겠다
 
 import java.util.ArrayList;
 import java.util.List;
