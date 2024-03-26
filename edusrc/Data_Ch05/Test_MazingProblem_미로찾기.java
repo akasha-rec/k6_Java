@@ -124,7 +124,7 @@ class Offsets3 {
 		
 		public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 
-			mark[1][1] = 1;//시작점
+			mark[1][1] = 2;//시작점
 			StackList st = new StackList(50); //위치를 push하고 pop할 stack 생성
 			Items3 temp = new Items3(0, 0, 0);//N :: 0 enum Direction에서 순서를 정해놨는데 그 중 [0]
 			temp.x = 1; // (1, 1)
@@ -150,17 +150,19 @@ class Offsets3 {
 						return;
 					}
 					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // 아직 안 간 곳 > 이동 가능한지 따져
-						mark[i][j] = 1; //혹은 maze[i][j] = 1;
-						Items3 tmp1 = new Items3(i, j, d+1);//stack에 현재 위치를 push할 때 다음 이동 방향인 dir를 같이 포함한다.
-						st.push(tmp1);
+						mark[i][j] = 2;
+						mark[g][h] = 2;
+						Items3 temp1 = new Items3(i, j, d+1);//stack에 현재 위치를 push할 때 다음 이동 방향인 dir를 같이 포함한다.
+						st.push(temp1);
 						i = g; //현재 위치에서 다음 위치로 업데이트
 						j = h;
 						d = 0; //북쪽부터 재탐색
 					} else {
-						d++;
+						d++;//다른 방향으로 탐색하러
 				}
+				mark[i][j] = 0;
 			}
-			System.out.println("no path in maze ");
+				System.out.println("no path in maze ");
 		}
 		}
 		static void showMatrix(int[][]d, int row, int col) {
@@ -206,12 +208,13 @@ class Offsets3 {
 			
 			for (int i = 0; i < 14; i++) {// input[][]을 maze[][]로 변환 : 
 				for (int j = 0; j < 17; j++) {
-					if(i == 0 || j == 0 || i == 13 || j == 16) //행 인덱스가 0이거나 16일 때, 열 인덱스가 0이거나 16일 때 1 입력하고자
+					if(i == 0 || j == 0 || i == 13 || j == 16) { //행 인덱스가 0이거나 16일 때, 열 인덱스가 0이거나 16일 때 1 입력하고자
+						mark[i][j] = 1;
 						maze[i][j] = 1;//각 경계 영역의 maze 배열값을 1로 설정 > 어떤 지역에서도 8방향을 고려하게?	
-					else {//input 배열의 요소를 maze 배열 안으로 넣어줘서
+					} else {//input 배열의 요소를 maze 배열 안으로 넣어줘서
 						maze[i][j] = input[i-1][j-1];
 					}
-					mark[i][j] = 0;
+				
 				}
 			}
 			
@@ -223,7 +226,7 @@ class Offsets3 {
 
 			path(maze, mark, 12, 15);
 			System.out.println("mark:: 해결");
-			showMatrix(mark, 12, 15);
+			showMatrix(mark, 13, 16);
 		}
 	}
 
