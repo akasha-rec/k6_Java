@@ -25,22 +25,32 @@ class LinkedList1 {
 	{
 		Node1 q, current = first;
 		q = current;
+		
 	
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node1 p = first;
 		int num = 0;
-
+		if(first == null) {
+			System.out.println("빈 노드입니다.");
+			return;
+		}
+		while (p != null) {
+			System.out.println("p.data " + "→" + p.data);
+			p = p.link;
+		}
 	}
 
 	public void Add(int element) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
 		Node1 newNode = new Node1(element);
-		if (first == null) // insert into empty list
-		{
+		if (first == null) {//데이터가 하나도 없을 때
 			first = newNode;
 			return;
+		} else { //데이터가 1개 이상 있을 때
+			newNode.link = first;
+			first = newNode;
 		}
 
 	}
