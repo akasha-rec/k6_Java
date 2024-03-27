@@ -94,9 +94,9 @@ public class 실습9_1정수연결리스트 {
 		do {
 			for (Menu m : Menu.values()) {//Menu 생성자 호출됨
 				System.out.printf("(%d) %s  ", m.ordinal(), m.getMessage());//(0) 삽입  (1) 삭제  (2) 인쇄 (3) 검색  (4) 종료   : 출력되는 곳
-				if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())
+				if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())//Add Delete Show \n Search Exit 형식으로 출력
 					System.out.println();
-			}
+			}//계속 루프
 			System.out.print(" : ");
 			key = sc.nextInt();
 		} while (key < Menu.Add.ordinal() || key > Menu.Exit.ordinal());
