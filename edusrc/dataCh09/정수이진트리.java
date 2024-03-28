@@ -323,16 +323,38 @@ class Tree5 {
 		//inorder traversal시에 정렬된 결과가 나와야 한다
 		TreeNode5 p = root;
 		TreeNode5 q = null;
-		
-		return true;
+		TreeNode5 temp = new TreeNode5(x);
+		int branchMode = 0;
+		if (root == null) {//root 생성해줘야 한다고 생각하고 시작
+			root = temp;
+			return true;
+		}
+		while (p != null) {//root가 있어서 비교하면서 만들기 시작. root가 null이 될 일X > 무한 루프 >> p != null이 아닐 때까지 while문 돌려
+			if(p.data < x) {//p가 삽입할 값보다 작으면 왼쪽 노드로 가야
+				q = p;
+				p = p.LeftChild;
+				branchMode = 1;
+			} else {
+				q = p;
+				p = p.RightChild;
+				branchMode = 2;
+			}
+		}
+		if (branchMode == 1) {
+			q.LeftChild = temp;
+		} else {
+			q.RightChild = temp;
+		}
 	}
 
 	boolean delete(int num) {//binary search tree에서 임의 값을 갖는 노드를 찾아 삭제한다.
-		//삭제 대상이 leaf node인 경우, non-leaf node로 구분하여 구현한다 
-		TreeNode5 p = root, q = null, parent = null;
+		//삭제 대상이 leaf node인 경우, non-leaf node로 구분하여 구현한다. 자식이 있으면 non-leaf / 자식이 없으면 leaf
+		TreeNode5 p = root, q = null, parent = null; //parent : non-leaf
 		int branchMode = 0; // 1은 left, 2는 right
-		if (root == null)
+		if (root == null) {
+			p = root;
 			return false;
+		}
 		
 		return false;
 
@@ -340,7 +362,16 @@ class Tree5 {
 
 	boolean search(int num) {//num 값을 binary search tree에서 검색
 		TreeNode5 p = root;
-
+		if(root == null) {
+			p = root;
+			return true;
+		}
+		while (p != null) {
+			if(p.data == num) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
@@ -387,7 +418,7 @@ public class 정수이진트리 {
 		Scanner stdIn = new Scanner(System.in);
 		Tree5 t = new Tree5();//1. heap에 공간 할당 2. 할당된 주소값을 참조변수에게 3. 생성자 함수 body 실행
 		Menu menu; // 메뉴
-		int count = 20;
+		int count = 5;
 		int num;
 		boolean result;
 		do {
