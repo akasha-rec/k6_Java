@@ -1,4 +1,4 @@
-package Chap8_List;
+package Data_Ch08;
 //단순한 linked list에서 insert, delete하는 알고리즘을 코딩: 1단계
 
 import java.util.Random;
@@ -21,24 +21,42 @@ class LinkedList1 {
 		first = null;
 	}
 
-	public boolean Delete(int element) //전달된 element 값이 존재 하면 삭제하고 true로 리턴
-	{
-		Node1 q, current = first;
-		q = current;
-		
-	
+	public boolean Delete(int data) //전달된 element 값이 존재 하면 삭제하고 true로 리턴
+	{	Node1 p = first;
+		Node1 q = null;
+
+	if(first == null) {
+		System.out.println("데이터가 없습니다.");
+		return false;
+	}
+	if (p.data == data) {
+		first = p.link;
+		return true;
+	}
+	while (p != null) {
+		if(data == p.data) {
+			q.link = p.link;
+			p = p.link;
+		}
+		q = p;
+		p = p.link;
+
+	}
+	return false;
+
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node1 p = first;
-		int num = 0;
+		int num = 1;
 		if(first == null) {
 			System.out.println("빈 노드입니다.");
 			return;
 		}
 		while (p != null) {
-			System.out.println("p.data " + "→" + p.data);
+			System.out.println(num + "번째 데이터 "+ p.data + "입니다.");
 			p = p.link;
+			num++;
 		}
 	}
 
@@ -49,17 +67,46 @@ class LinkedList1 {
 			first = newNode;
 			return;
 		} else { //데이터가 1개 이상 있을 때
-			newNode.link = first;
-			first = newNode;
-		}
+			Node1 p = first;
+			Node1 q = null;
+
+			if(p.data >= newNode.data) {
+				newNode.link = first;
+				first = newNode;
+				return;
+			}
+
+			while (p != null) {
+				if(p.data <= newNode.data) {
+					q = p;
+					p = p.link;
+				} else {
+					q.link = newNode;
+					newNode.link = p;
+					return;
+				}
+			}
+			q.link = newNode;
+		}	
 
 	}
 
 	public boolean Search(int data) {//전달된 data 값을 찾아 존재하면 true로 리턴, 없으면 false로 리턴
-		Node1 ptr = first;
+		Node1 p = first;
+		if (first == null) {
+			System.out.println("빈 데이터입니다.");
+			return false;
+		}
+		while (p != null) {
+			if(data == p.data) {
+				return true;
+			}
+			p = p.link;
+		}
 
 		return false;
 	}
+
 	void Merge(LinkedList1 b) {
 		/*
 		 * 연결리스트 a,b에 대하여 a = a + b
@@ -75,10 +122,10 @@ public class 실습9_1정수연결리스트 {
 		Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("합병"), Exit("종료");
 
 		private final String message; // 표시할 문자열
-//		Menu class로 간주하고 Add, Delete, Show, Search, Exit가 Menu의 객체
+		//		Menu class로 간주하고 Add, Delete, Show, Search, Exit가 Menu의 객체
 		static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
 			for (Menu m : Menu.values())//생성자가 호출되는 곳. values는 java library의 method
-//			> Menu.values(Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Exit("종료"))는 list로 갖고 있어
+				//			> Menu.values(Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Exit("종료"))는 list로 갖고 있어
 				if (m.ordinal() == idx)
 					return m;
 			return null;
@@ -118,9 +165,10 @@ public class 실습9_1정수연결리스트 {
 		Random rand = new Random();
 		LinkedList1 l = new LinkedList1();
 		Scanner sc = new Scanner(System.in);
-		int count = 0; //난수 생성 갯수
+		int count = 3; //난수 생성 갯수
 		int data = 0;
 		do {
+			l.Show();
 			switch (menu = SelectMenu()) {//Menu 생성자 호출 - menu 객체를 리턴한다 
 			case Add: // 0일 때 난수를 삽입하는데 올림차순으로 정렬되도록 구현
 				for (int i =0; i < count; i++) {
