@@ -118,6 +118,7 @@ class ObjectStack5{
 		}
 	}
 }
+
 //정수를 저정하는 이진트리 만들기 실습
 class ObjectQueue5 {
     private TreeNode5[] que;//큐는 배열로 구현
@@ -247,7 +248,14 @@ class Tree5 {
 		else
 			return false;
 	}
-
+	
+	boolean isOneChild(TreeNode5 current) {
+		if (current.LeftChild == null || current.RightChild == null)
+			return true;
+		else
+			return false;
+	}
+	
 	void inorder() {//두 메서드는 다르다. driver 함수?
 		inorder(root);//workhorse > inorder(TreeNode5 current) 메서드
 	}
@@ -323,12 +331,14 @@ class Tree5 {
 		//inorder traversal시에 정렬된 결과가 나와야 한다
 		TreeNode5 p = root;
 		TreeNode5 q = null;
-		TreeNode5 temp = new TreeNode5(x);
+		TreeNode5 temp = new TreeNode5();
 		int branchMode = 0;
+		
 		if (root == null) {//root 생성해줘야 한다고 생각하고 시작
 			root = temp;
 			return true;
 		}
+		
 		while (p != null) {//root가 있어서 비교하면서 만들기 시작. root가 null이 될 일X > 무한 루프 >> p != null이 아닐 때까지 while문 돌려
 			if(p.data < x) {//p가 삽입할 값보다 작으면 왼쪽 노드로 가야
 				q = p;
@@ -340,11 +350,13 @@ class Tree5 {
 				branchMode = 2;
 			}
 		}
+		
 		if (branchMode == 1) {
 			q.LeftChild = temp;
 		} else {
 			q.RightChild = temp;
 		}
+		return true;
 	}
 
 	boolean delete(int num) {//binary search tree에서 임의 값을 갖는 노드를 찾아 삭제한다.
@@ -352,10 +364,42 @@ class Tree5 {
 		TreeNode5 p = root, q = null, parent = null; //parent : non-leaf
 		int branchMode = 0; // 1은 left, 2는 right
 		if (root == null) {
-			p = root;
 			return false;
 		}
-		
+		while (p != null) {
+			if(num == p.data) {
+				//찾았다 > p가 leaf-node / non-leaf 확인 > 1. leaf-node면 isLeafNode 호출, non-leaf면 child가 2. one or 3. two 확인하고
+				if(isLeafNode(p)) {
+					if (branchMode == 1) {
+						p.LeftChild = null;
+					} else {
+						p.RightChild = null;
+						}
+					return true;
+				}
+				
+				if(isOneChild(p)) {
+					if (branchMode == 1) {
+						parent = p.LeftChild;
+					} else {
+						parent = p.RightChild;
+					}
+				}
+//				p = null;
+//				return true;
+			} else if (num < p.data) {
+				q = p;
+				p = q.LeftChild;
+				branchMode = 1;
+				return true;
+			} else {
+				q = p;
+				p = q.RightChild;
+				branchMode = 2;
+				return true;
+			}
+			
+		}
 		return false;
 
 	}
@@ -363,11 +407,16 @@ class Tree5 {
 	boolean search(int num) {//num 값을 binary search tree에서 검색
 		TreeNode5 p = root;
 		if(root == null) {
-			p = root;
-			return true;
+			return false;
 		}
 		while (p != null) {
 			if(p.data == num) {
+				return true;
+			} else if (num < p.data) {
+				p = p.LeftChild;
+				return true;
+			} else {
+				p = p.RightChild;
 				return true;
 			}
 		}
@@ -425,15 +474,17 @@ public class 정수이진트리 {
 			switch (menu = SelectMenu()) {
 			case Add: // 
 				int[] input = new int[count];
-				for (int ix = 0; ix < count; ix++) {
-					input[ix] = rand.nextInt(50);
-				}
-				for (int n: input)
-					System.out.print(n + " ");
-				for (int i = 0; i < count; i++) {
-					if (!t.insert(input[i]))
-						System.out.println("Insert Duplicated data");
-				}
+				int r = stdIn.nextInt();
+				t.insert(r);
+//				for (int ix = 0; ix < count; ix++) {
+//					input[ix] = rand.nextInt(50);
+//				}
+//				for (int n: input)
+//					System.out.print(n + " ");
+//				for (int i = 0; i < count; i++) {
+//					if (!t.insert(input[i]))
+//						System.out.println("Insert Duplicated data");
+//				}
 				break;
 
 			case Delete: //임의 정수 삭제
