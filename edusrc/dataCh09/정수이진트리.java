@@ -15,6 +15,13 @@ class TreeNode5 {
 	public TreeNode5() {
 		LeftChild = RightChild = null;
 	}
+
+	public TreeNode5(int x) {
+		// TODO Auto-generated constructor stub
+		data = x;
+		LeftChild = RightChild = null;
+
+	}
 }
 
 class ObjectStack5{
@@ -331,37 +338,48 @@ class Tree5 {
 		//inorder traversal시에 정렬된 결과가 나와야 한다
 		TreeNode5 p = root;
 		TreeNode5 q = null;
-		TreeNode5 temp = new TreeNode5();
+		TreeNode5 temp = new TreeNode5(x);
 		int branchMode = 0;
 		
 		if (root == null) {//root 생성해줘야 한다고 생각하고 시작
 			root = temp;
+			System.out.println("temp 데이터는 " + temp.data);
 			return true;
 		}
-		
+
 		while (p != null) {//root가 있어서 비교하면서 만들기 시작. root가 null이 될 일X > 무한 루프 >> p != null이 아닐 때까지 while문 돌려
-			if(p.data < x) {//p가 삽입할 값보다 작으면 왼쪽 노드로 가야
-				q = p;
+			if(p.data > x) {//p가 삽입할 값보다 작으면 왼쪽 노드로 가야
+				if(p.LeftChild == null) {
+					branchMode = 1;
+					break;
+				}
+//				q = p;
 				p = p.LeftChild;
 				branchMode = 1;
 			} else {
-				q = p;
+				if (p.RightChild == null) {//
+					branchMode = 2;
+					break;
+				}
+//				q = p;
 				p = p.RightChild;
 				branchMode = 2;
 			}
 		}
 		
 		if (branchMode == 1) {
-			q.LeftChild = temp;
+//			q.LeftChild = temp;
+			p.LeftChild = temp;
 		} else {
-			q.RightChild = temp;
+//			q.RightChild = temp;
+			p.RightChild = temp;
 		}
 		return true;
 	}
 
 	boolean delete(int num) {//binary search tree에서 임의 값을 갖는 노드를 찾아 삭제한다.
 		//삭제 대상이 leaf node인 경우, non-leaf node로 구분하여 구현한다. 자식이 있으면 non-leaf / 자식이 없으면 leaf
-		TreeNode5 p = root, q = null, parent = null; //parent : non-leaf
+		TreeNode5 p = root, parent = null; //parent : non-leaf q = null 
 		int branchMode = 0; // 1은 left, 2는 right
 		if (root == null) {
 			return false;
@@ -371,36 +389,46 @@ class Tree5 {
 				//찾았다 > p가 leaf-node / non-leaf 확인 > 1. leaf-node면 isLeafNode 호출, non-leaf면 child가 2. one or 3. two 확인하고
 				if(isLeafNode(p)) {
 					if (branchMode == 1) {
-						p.LeftChild = null;
+						parent.LeftChild = null;
+						System.out.println("1");
+						return true;
 				 } else {
-						p.RightChild = null;
+						parent.RightChild = null;
+						System.out.println("2");
+						return true;
 					}
 				}
 				else if (isOneChild(p)) {
 					if (branchMode == 1) {
-						parent = p.LeftChild;
+						parent.LeftChild = p.LeftChild;
+						System.out.println("3");
+						return true;
 					} else {
-						parent = p.RightChild;
+						parent.RightChild = p.RightChild;
+						System.out.println("4");
+						return true;
 					}
 				} else {
 					TreeNode5 tmp = new TreeNode5();
 					tmp = inorderSucc(p);//삭제할 p의 오른쪽 서브트리에서 가장 작은 값
-					delete(tmp.data);
-//					p = tmp;
+					delete(tmp.data);//복사하고 기존 노드와의 연결 제거
+					parent.RightChild = tmp;
+					tmp.LeftChild = p.LeftChild; //기존 p의 왼쪽 자식이 tmp의 왼쪽 자식이 되고
+					tmp.RightChild= p.RightChild;//기존 p의 오른쪽 자식이 tmp의 오른쪽 자식이 되고
+					System.out.println("5");
+					return true;
 				}
 					
 //				p = null;
 //				return true;
-			} else if (num < p.data) {
-				q = p;
-				p = q.LeftChild;
+			} else if (num < p.data) {//parent 설정
+				parent = p;
+				p = p.LeftChild;
 				branchMode = 1;
-				return true;
 			} else {
-				q = p;
-				p = q.RightChild;
+				parent = p;
+				p = p.RightChild;
 				branchMode = 2;
-				return true;
 			}
 			
 		}
@@ -418,10 +446,10 @@ class Tree5 {
 				return true;
 			} else if (num < p.data) {
 				p = p.LeftChild;
-				return true;
+//				return true;
 			} else {
 				p = p.RightChild;
-				return true;
+//				return true;
 			}
 		}
 		return false;
@@ -471,15 +499,24 @@ public class 정수이진트리 {
 		Scanner stdIn = new Scanner(System.in);
 		Tree5 t = new Tree5();//1. heap에 공간 할당 2. 할당된 주소값을 참조변수에게 3. 생성자 함수 body 실행
 		Menu menu; // 메뉴
-		int count = 5;
+		int count = 10;
 		int num;
 		boolean result;
 		do {
 			switch (menu = SelectMenu()) {
 			case Add: // 
-				int[] input = new int[count];
-				int r = stdIn.nextInt();
-				t.insert(r);
+//				int[] input = new int[count];
+//				int r = stdIn.nextInt();
+//				t.insert(r);
+				t.insert(30);
+				t.insert(20);
+				t.insert(40);
+				t.insert(10);
+				t.insert(5);
+				t.insert(35);
+				t.insert(54);
+				t.insert(55);
+				t.insert(60);
 //				for (int ix = 0; ix < count; ix++) {
 //					input[ix] = rand.nextInt(50);
 //				}
