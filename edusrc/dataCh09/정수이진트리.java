@@ -233,9 +233,9 @@ class Tree5 {
 		root = null;
 	}
 
-	TreeNode5 inorderSucc(TreeNode5 current) {//코드 해석
-		TreeNode5 temp = current.RightChild;
-		if (current.RightChild != null)
+	TreeNode5 inorderSucc(TreeNode5 current) {//방법 2가지 : 1. 삭제할 노드의 오른쪽 서브트리에서 가장 작은 노드와 바꾼다. 2. 삭제할 노드의 왼쪽 서브트리에서 가장 큰 노드와 바꾼다.
+		TreeNode5 temp = current.RightChild;//1. 삭제할 노드의 오른쪽 서브트리에서 가장 작은 노드를 찾아서 바꾸겠다.
+		if (current.RightChild != null)//non-leaf의 경우
 			while (temp.LeftChild != null)
 				temp = temp.LeftChild;
 		System.out.println("inordersucc:: temp.data = "+temp.data);
@@ -372,19 +372,23 @@ class Tree5 {
 				if(isLeafNode(p)) {
 					if (branchMode == 1) {
 						p.LeftChild = null;
-					} else {
+				 } else {
 						p.RightChild = null;
-						}
-					return true;
+					}
 				}
-				
-				if(isOneChild(p)) {
+				else if (isOneChild(p)) {
 					if (branchMode == 1) {
 						parent = p.LeftChild;
 					} else {
 						parent = p.RightChild;
 					}
+				} else {
+					TreeNode5 tmp = new TreeNode5();
+					tmp = inorderSucc(p);//삭제할 p의 오른쪽 서브트리에서 가장 작은 값
+					delete(tmp.data);
+//					p = tmp;
 				}
+					
 //				p = null;
 //				return true;
 			} else if (num < p.data) {
