@@ -1,4 +1,4 @@
-package data_Ch10;//p412
+package dataCh10;//p412
 
 //오픈 주소법에 의한 해시의 사용 예
 
