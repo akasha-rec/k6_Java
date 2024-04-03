@@ -3,8 +3,8 @@ package dataCh11;
 /*
  Graph Representation
  Adjacency Lists + BFS + DFS
-*/
-/*
+ */
+
 import java.util.Scanner;
 
 class ListNode {
@@ -18,24 +18,47 @@ class ListNode {
 }
 
 class List {
+	ListNode first;
+
 	public List() {
 		first = null;
 	}
-	ListNode first;
+	
 	void Insert(int k) {//같은 값을 체크하지 않아 중복 입력됨
 		// 구현할 부분
+		ListNode temp = new ListNode(k);
+		if (first == null) {
+			first = temp;
+			return;
+		}
+		ListNode p = first, q = null;
+		while (p != null) {
+			q =  p;
+			p = p.link;
+		}
 	}
+
 	void Delete(int k) {
 		// 구현할 부분
+		ListNode tmp = new ListNode(k);
+		if (first == null) {
+			return;
+		}
+		ListNode p = first, q = null;
+		while (p != null) {
+			if (k == p.data) {
+				return;
+			} else
+		}
 	}
 }
 
 class ListIterator {
 
 	private List list;
-	private ListNode current;
+	private ListNode current;//현재 어디를 가리키고 있는지 포인터
 
-	public ListIterator(List l) {
+	public ListIterator(List l) {//생성자
 		list = l;
 		current = list.first;
 	}
@@ -47,7 +70,7 @@ class ListIterator {
 			return 0;
 	}
 
-	int Next() {
+	int Next() {//다음으로 이동
 		int data = current.data;
 		current = current.link;
 		return data;
@@ -60,7 +83,7 @@ class ListIterator {
 			return false;
 	}
 
-	boolean NextNotNull() {
+	boolean NextNotNull() {//current 다음이 null인지 아닌지
 		if (current.link != null)
 			return true;
 		else
@@ -102,8 +125,8 @@ class Queue {
 		// 구현할 부분
 	}
 
-	int Delete()
-	// 구현할 부분
+	int Delete() {
+		// 구현할 부분
 	}
 }
 class StackNode {
@@ -151,27 +174,40 @@ class Graph {
 	boolean[] visited;
 
 	public Graph(int vertices) {
+
+		int [][]a = new int[3][];//행이 3개인 행렬
+		for (int i = 0; i < a.length; i++) {//=> [3][4] 행렬을 만들었다.
+			a[i] = new int[4];//한 행에 요소가 4개, 열이 4개
+		}
+
 		n = vertices;
 		HeadNodes = new List[n];
 		visited = new boolean[n];
 		for (int i = 0; i < n; i++) {
-			HeadNodes[i] = new List();
+			HeadNodes[i] = new List(); //linkedList
 			visited[i] = false;
 		}
-		
+
 	}
 
 	void displayAdjacencyLists() {
 		for (int i = 0; i < n; i++) {
+			System.out.print("\n" + i + "[ ] ");
+			ListNode p = HeadNodes[i].first;//왜 first를 썼을까?
+			while (p != null) {
+				System.out.print("-> " + p.data);
+			}
 			// 구현할 부분
 		}
 	}
 
-	void InsertVertex(int start, int end) {
+	void InsertVertex(int start, int end) {//(0, 1) 전달 시
 		if (start < 0 || start >= n || end < 0 || end >= n) {
 			System.out.println("the start node number is out of bound.");
 			return;
 		}
+		HeadNodes[start].Insert(end);;
+		HeadNodes[end].Insert(start);;
 
 		// 구현할 부분
 	}
@@ -181,19 +217,20 @@ class Graph {
 		for (int i = 0; i < n; i++)
 			visited[i] = false; // initially, no vertices have been visited
 		// 구현할 부분
+		//_BFS(v);//non-recursive. queue를 사용해서 구현
 	}
 	void ShowList(List l) {
 		ListIterator li = new ListIterator(l);
 		// 구현할 부분
 	}
 
-	// Driver
+	// Driver : main에서 호출된 함수
 	void DFS(int v) {
 		for (int i = 0; i < n; i++)
 			visited[i] = false; // initially, no vertices have been visited
 
-		//_DFS(v); // start search at vertex 0
-		_NonRecursiveDFS(v);
+		_DFS(v); // start search at vertex 0, recursive
+		//_NonRecursiveDFS(v); //Stack을 이용한 non-recursive
 
 	}
 
@@ -203,12 +240,12 @@ class Graph {
 	{
 		visited[v] = true;
 		System.out.println(v + ", ");
-		ListIterator li = new ListIterator(HeadNodes[v]);
+		ListIterator li = new ListIterator(HeadNodes[v]);//list를 준다. v = 0 > 첫번째 리스트
 		if (!li.NotNull())
 			return;
 		int w = li.First();
 		while (true) {
-			if (!visited[w])
+			if (!visited[w]) //방문하지 않았으면 다시 방문. recursive
 				_DFS(w);
 			if (li.NotNull())
 				w = li.Next();
@@ -217,18 +254,19 @@ class Graph {
 		}
 	}
 	// Workhorse 2
-		void _NonRecursiveDFS(int v)
-		// visit all previously unvisited vertices that are reachable from vertex v
-		{
-			// 구현할 부분
-			
-		}
+	void _NonRecursiveDFS(int v)
+	// visit all previously unvisited vertices that are reachable from vertex v
+	{
+		// 구현할 부분
+
+	}
 }
 public class Chap11_test_그래프DFS_BFS {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		//select : 메뉴 선택 변수 / n : node 개수
 		int select = 10, n, startEdge = -1, endEdge = -1;
-		int startBFSNode = 100;// the start node to BFS
+		int startBFSNode = 0;// the start node to BFS
 
 		System.out.println("vertex 숫자 입력: ");
 
@@ -241,6 +279,7 @@ public class Chap11_test_그래프DFS_BFS {
 			select = sc.nextInt();
 			switch (select) {
 			case 1:
+				/*
 				System.out.println("edge 추가: from vertext: ");
 				startEdge = sc.nextInt();
 				System.out.println("to vertex: ");
@@ -255,6 +294,11 @@ public class Chap11_test_그래프DFS_BFS {
 				if (endEdge < startBFSNode)
 					startBFSNode = endEdge;
 				g.InsertVertex(startEdge, endEdge);
+				 */
+				int [][] inputData = {{0, 1}, {0, 2}, {0, 3}, {1, 4}, {2, 4}, {3, 4}, {3, 5}, {4, 5}};
+				for (int i = 0; i < inputData.length; i++) {
+					g.InsertVertex(inputData[i][0], inputData[i][1]);
+				}
 				break;
 			case 2:
 				// display
@@ -267,7 +311,7 @@ public class Chap11_test_그래프DFS_BFS {
 				break;
 			case 4:
 				System.out.println("Start DFS from node: " + startBFSNode);
-				g.DFS(startBFSNode);
+				g.DFS(startBFSNode);//0번으로 시작
 				break;
 			case 5:
 				System.exit(0);
@@ -281,4 +325,3 @@ public class Chap11_test_그래프DFS_BFS {
 		return;
 	}
 }
-*/
