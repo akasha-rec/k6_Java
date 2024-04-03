@@ -83,12 +83,12 @@ public int hashValue(int key) {
 				 table[hash] = p.next;
 			 else
 				 q.next = p.next;
-			 return 0;
+			 return 1;
 		 }
 		 q= p;
 		 p = p.next;
 	 }
-	 return 1; //키 값은 없다.
+	 return -1; //키 값은 없다.
  }
 
  //--- 해시 테이블을 덤프(dump) ---//
