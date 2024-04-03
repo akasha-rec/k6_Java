@@ -3,10 +3,10 @@ package dataCh11;
 
 /* sets - graph의 최단경로에서 사용
 */
-/*
+
 class Sets {
-	int[] parent;
-	int n;
+	int[] parent; //1차원 배열
+	int n; //개수
     public Sets(int sz)
     {
 
@@ -18,7 +18,7 @@ class Sets {
 
     }
 
-    public int SimpleFind(int i)
+    public int SimpleFind(int i) //for문
     // Find the root of the tree containing element i
     {
     }
@@ -53,7 +53,7 @@ class Sets {
 }
 public class Chap11_test_그래프세트구현 {
 	public static void main(String[] args) {
-	Sets m = new Sets(8);
+	Sets m = new Sets(8);//배열의 size = 8
 	m.display();
 	System.out.println("find 5: " + m.CollapsingFind(5));
 	m.WeightedUnion(1, 2);
@@ -93,4 +93,3 @@ public class Chap11_test_그래프세트구현 {
 	return;
 }
 }
-*/

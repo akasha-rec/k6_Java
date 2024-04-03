@@ -1,5 +1,5 @@
 package dataCh11;
-/*
+
 import java.util.Scanner;
 
 //minimal spanning tree:: Kruskal’s source code
@@ -8,12 +8,13 @@ interface MaxHeap {
 	public void Insert(Edge x);
 	public Edge DeleteMin();
 }
+
 class Edge implements Comparable<Edge>{
 	int src;
 	int dest;
 	int weight;
-
 }
+
 class Heap implements MaxHeap {
 	final int heapSize = 100;
 	private Edge[] heap;
@@ -91,7 +92,6 @@ static void KruskalMST(Graph graph, int n)
 		return;
 	}
 	// MST 출력
-
 	for (int k = 0; k < t; k++)
 		System.out.println(result[k] + " ");
 	return;
