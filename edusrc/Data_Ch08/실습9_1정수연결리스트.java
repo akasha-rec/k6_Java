@@ -22,28 +22,24 @@ class LinkedList1 {
 	}
 
 	public boolean Delete(int data) //전달된 element 값이 존재 하면 삭제하고 true로 리턴
-	{	Node1 p = first;
-		Node1 q = null;
+	{	Node1 p = first; //p는 현재 노드를 가리키는 포인터이자 참조변수, first는 첫번째 노드를 가리킴
+		Node1 q = null;//q는 이전 노드를 가리키는 포인터이자 참조변수
 
 	if(first == null) {
 		System.out.println("데이터가 없습니다.");
 		return false;
 	}
-	if (p.data == data) {
-		first = p.link;
-		return true;
-	}
 	while (p != null) {
-		if(data == p.data) {
-			q.link = p.link;
-			p = p.link;
+		if(p.data == data) {
+			if (q == null) {//첫번째 노드를 삭제하는 경우
+			first = p.link; //first를 다음 노드의 주소값을 가지고 있는 p.link를 할당하여 다음 노드를 새로운 첫 노드로 만듦
+		} else {
+		q.link = p.link;//이전 노드 q와 p의 다음 노드를 연결
+		}
+		return true; //삭제 성공
 		}
 		q = p;
-		p = p.link;
-
-	}
-	return false;
-
+		p = p.link; //
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
