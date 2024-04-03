@@ -41,6 +41,8 @@ class LinkedList1 {
 		q = p;
 		p = p.link; //
 	}
+	 return false;
+	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node1 p = first;
