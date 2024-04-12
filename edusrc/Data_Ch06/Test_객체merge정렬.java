@@ -15,12 +15,12 @@ class PhyscData implements Comparable<PhyscData>{
 }
 public class Test_객체merge정렬 {
 	// --- 배열 요소 a[idx1]와 a[idx2]의 값을 교환 ---//
-	static void merge(PhyscData[] a, int lefta, int righta, int leftb, int rightb ) {
+	static void merge(PhyscData[] a,  int lefta, int righta, int leftb, int rightb ) {
 		PhyscData temp[] = new PhyscData[30];
 		int ix = 0;
 		int p = lefta, q = leftb;
 		while (p <= righta && q <= rightb) {
-			if (a[p] < a[q]) temp[ix++] = a[p++];
+			if (a[p].compareTo(a[q])) temp[ix++] = a[p++];
 			else if (a[p] > a[q]) temp[ix++] = a[q++];
 			else {
 				temp[ix++] = a[p++];temp[ix++] = a[q++];

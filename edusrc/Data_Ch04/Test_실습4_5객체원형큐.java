@@ -51,10 +51,19 @@ class CircularQueue {
 	int front, rear;
 	static boolean isEmptyTag;
 	//--- 실행시 예외: 큐가 비어있음 ---//
-
+	public class EmptyQueueException extends RuntimeException {
+		public EmptyQueueException(String message) {
+			super(message);
+		}
+	}
 
 	//--- 실행시 예외: 큐가 가득 찼음 ---//
-
+	public class OverflowQueueException extends RuntimeException {
+		public OverflowQueueException(String message) {
+			super(message);
+		}
+	}
+	
 	public CircularQueue(int count) {
 		front = rear = 0;
 		que = new Point5[count];

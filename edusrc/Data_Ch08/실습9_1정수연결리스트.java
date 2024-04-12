@@ -29,7 +29,7 @@ class LinkedList1 {
 		System.out.println("데이터가 없습니다.");
 		return false;
 	}
-	if (p.data == data) {
+	if (p.data == data) {//첫번째 노드를 삭제할 경우
 		first = p.link;
 		return true;
 	}

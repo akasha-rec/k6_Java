@@ -124,7 +124,7 @@ class Offsets3 {
 		
 		public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 
-			mark[1][1] = 2;//시작점
+			mark[1][1] = 1;//시작점
 			StackList st = new StackList(50); //위치를 push하고 pop할 stack 생성
 			Items3 temp = new Items3(0, 0, 0);//N :: 0 enum Direction에서 순서를 정해놨는데 그 중 [0]
 			temp.x = 1; // (1, 1)
@@ -132,7 +132,8 @@ class Offsets3 {
 			temp.dir = 2;//E:: 2 
 			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시
 			st.push(temp);//시작 위치를 stack에 저장하고 탐색 시작
-
+			
+			st.dump();
 			while (!st.isEmpty()) {// 스택이 비어있지 X > 탐색의 끝이 나지 X > pop하면서 위치 수정
 				Items3 tmp = st.pop(); // unstack
 				int i = tmp.x;
@@ -145,6 +146,7 @@ class Offsets3 {
 					int h = j+moves[d].b;//h는 다음 열 방향 j(이전 위치) + b만큼
 
 					if ((g == ix) && (h == iy)) { // reached exit, output path
+						
 						mark[i][j] = 2;
 						mark[g][h] = 2;
 						return;
